@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtokolyPomiarow", "ProtokolyPomiarow\ProtokolyPomiarow.csproj", "{E8F19169-74B5-410F-B8F1-808DCB732165}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8F19169-74B5-410F-B8F1-808DCB732165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F19169-74B5-410F-B8F1-808DCB732165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F19169-74B5-410F-B8F1-808DCB732165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F19169-74B5-410F-B8F1-808DCB732165}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2863BDF0-B1F4-4D9E-8638-CE7FD78144E6}
+	EndGlobalSection
+EndGlobal

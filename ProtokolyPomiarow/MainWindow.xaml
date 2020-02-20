@@ -1,0 +1,102 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProtokolyPomiarow"
+        xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.MainWindow"
+        mc:Ignorable="d"
+        Title="Protokoły pomiarów światłowodowych" SizeToContent="Manual" Loaded="Window_Loaded" 
+        Height="840" Width="1550" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <CollectionViewSource x:Key="mesurementViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:Mesurement}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid>
+        <Menu Height="20" VerticalAlignment="Top" >
+            <MenuItem Header="Plik" Height="20">
+                <MenuItem Header="Otwórz" x:Name="OpenMenuButt" Click="OpenMenuButt_Click"/>
+                <MenuItem x:Name="SaveMenuButt" Header="Zapisz" Click="SaveMenuButt_Click"/>
+                <MenuItem x:Name="NewFileMenuButt" Header="Nowy"/>
+                <MenuItem x:Name="ExportMenuButt" Header="Eksportuj (PDF)"/>
+            </MenuItem>
+            <MenuItem Header="Dane" Height="20">
+                <MenuItem x:Name="CleanMenuButt" Header="Wyczyść"/>
+                <MenuItem x:Name="DefValMenuButt" Header="Edytuj wartości domyślne" Click="DefValMenuButt_Click"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="0,20,0,0.4">
+            <TabItem Header="Nagłówek">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Informacje wstępne" HorizontalAlignment="Left" Height="156" Margin="10,10,0,0" VerticalAlignment="Top" Width="1510">
+                        <Grid Margin="10,10,10,2.8">
+                            <Label Content="Protokół nr " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
+                            <TextBox x:Name="ProtocolNumberTextBox" HorizontalAlignment="Left" Height="30" Margin="163,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Arial" VerticalContentAlignment="Center"/>
+                            <Label Content="Data dokumentu" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="163,42,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
+                            <Label Content="Data badania" HorizontalAlignment="Left" Margin="0,81,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="163,84,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Zleceniodawca" HorizontalAlignment="Left" Height="156" Margin="10,171,0,0" VerticalAlignment="Top" Width="1510">
+                        <Grid Margin="10,10,10,2.8">
+                            <Label Content="Dane zleceniodawcy" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
+                            <RichTextBox HorizontalAlignment="Left" Height="109" Margin="209,1,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial">
+                                <FlowDocument FontFamily="Arial" Language="pl">
+                                    <Paragraph>
+                                        <Run Text="RichTextBox"/>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Obiekt" HorizontalAlignment="Left" Height="156" Margin="10,332,0,0" VerticalAlignment="Top" Width="1510">
+                        <Grid Margin="10,10,10,2.8">
+                            <Label Content="Dane obiektu" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
+                            <RichTextBox HorizontalAlignment="Left" Height="109" Margin="141,4,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial">
+                                <FlowDocument FontFamily="Arial" Language="pl">
+                                    <Paragraph>
+                                        <Run Text="RichTextBox"/>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Przyrządy pomiarowe" HorizontalAlignment="Left" Height="116" Margin="10,493,0,0" VerticalAlignment="Top" Width="1510">
+                        <Grid Margin="10,10,10,2.8">
+                            <Label Content="Źródło światła" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
+                            <Label Content="Miernik" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold" Margin="0,39,0,0"/>
+                            <TextBox HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center"/>
+                            <TextBox HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button Content="Zapisz nagłówek" HorizontalAlignment="Left" Margin="1164,695,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
+                    <Button Content="Wczytaj nagłówek" HorizontalAlignment="Left" Margin="1366,695,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tabela Pomiarów">
+                <Grid Background="#FFE5E5E5" DataContext="{StaticResource mesurementViewSource}">
+                    <DataGrid x:Name="MesurementsDataGrid" Margin="0,0,0,90" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" FontFamily="Arial" CanUserAddRows="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Number}" ClipboardContentBinding="{x:Null}" Header="L.p." IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" MinWidth="50"/>
+                            <DataGridTextColumn Binding="{Binding Destination}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Cel" MinWidth="50"/>
+                            <DataGridTextColumn Binding="{Binding Type.Name}" ClipboardContentBinding="{x:Null}" Header="Typ światłowodu" IsReadOnly="True" CanUserSort="False"/>
+                            <DataGridTextColumn Binding="{Binding NumberOfWire}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Numer włókna"/>
+                            <DataGridTextColumn Binding="{Binding Distance}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Długość [km]"/>
+                            <DataGridTextColumn Binding="{Binding MaxAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wyliczona maksymalna wartość tłumienności [dB]" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding RealAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zmierzona tłumienność [dB]"/>
+                            <DataGridTextColumn Binding="{Binding PropperValue}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zgodne"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="AddButt" Content="Dodaj pomiar" HorizontalAlignment="Right" Margin="0,0,10,30" VerticalAlignment="Bottom" Height="40" Width="100" Click="AddButt_Click" IsDefault="True"/>
+                    <Button x:Name="DelButt" Content="Usuń pomiar" HorizontalAlignment="Right" Margin="0,0,130,30" VerticalAlignment="Bottom" Height="40" Width="100" Click="DelButt_Click" IsEnabled="False"/>
+                    <Button x:Name="EditButt" Content="Edytuj pomiar" HorizontalAlignment="Right" Margin="0,0,250,30" VerticalAlignment="Bottom" Height="40" Width="100" Click="EditButt_Click" IsEnabled="False"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stopka" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="54">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

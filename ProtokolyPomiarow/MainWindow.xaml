@@ -7,14 +7,15 @@
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.MainWindow"
         mc:Ignorable="d"
         Title="Protokoły pomiarów światłowodowych" SizeToContent="Manual" Loaded="Window_Loaded" 
-        Height="840" Width="1550" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Height="840" Width="1550" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Closing="Window_Closing">
     <Window.Resources>
         <CollectionViewSource x:Key="mesurementViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:Mesurement}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
         <Menu Height="20" VerticalAlignment="Top" >
             <MenuItem Header="Plik" Height="20">
-                <MenuItem x:Name="NewFileMenuButt" Header="Nowy"/>
+                <MenuItem x:Name="NewFileMenuButt" Header="Nowy (Ctrl + N)" Click="NewProject"/>
                 <MenuItem Header="Otwórz (Ctrl + O)" x:Name="OpenMenuButt" Click="OpenMenuButt_Click"/>
                 <MenuItem x:Name="SaveMenuButt" Header="Zapisz (Ctrl + S)" Click="SaveAction"/>
                 <MenuItem x:Name="SaveAsMenuButt" Header="Zapisz jako (Ctrl + Shift + S)" Click="SaveAsAction"/>
@@ -70,8 +71,6 @@
                             <TextBox HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>
-                    <Button Content="Zapisz nagłówek" HorizontalAlignment="Left" Margin="1164,695,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
-                    <Button Content="Wczytaj nagłówek" HorizontalAlignment="Left" Margin="1366,695,0,0" VerticalAlignment="Top" Width="140" Height="40"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tabela Pomiarów">

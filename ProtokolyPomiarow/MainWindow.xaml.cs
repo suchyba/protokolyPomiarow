@@ -21,6 +21,9 @@ namespace ProtokolyPomiarow
         public static RoutedCommand SaveCommand = new RoutedCommand();
         public static RoutedCommand OpenCommand = new RoutedCommand();
         public static RoutedCommand SaveAsCommand = new RoutedCommand();
+        public static RoutedCommand NewCommand = new RoutedCommand();
+
+        private bool haveUnsavedChanges = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +34,6 @@ namespace ProtokolyPomiarow
             mesurementViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("mesurementViewSource")));
 
             mesurementViewSource.Source = activeProject.Mesurements;
-            activeProject.AddCableType("Jednomod", 0.25);
-            activeProject.AddCableType("Wielomod", 0.3);
 
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(SaveCommand, SaveAction));
@@ -43,6 +44,8 @@ namespace ProtokolyPomiarow
             SaveAsCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift));
             CommandBindings.Add(new CommandBinding(SaveAsCommand, SaveAsAction));
 
+            NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(NewCommand, NewProject));
         }
 
         private void AddButt_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,7 @@ namespace ProtokolyPomiarow
             MesurementsDataGrid.Items.Refresh();
             EditButt.IsEnabled = true;
             DelButt.IsEnabled = true;
+            haveUnsavedChanges = true;
         }
 
         private void EditButt_Click(object sender, RoutedEventArgs e)
@@ -62,6 +66,7 @@ namespace ProtokolyPomiarow
             Window editWindow = new EditWindow(MesurementsDataGrid.SelectedItem as Mesurement);
             editWindow.ShowDialog();
             MesurementsDataGrid.Items.Refresh();
+            haveUnsavedChanges = true;
         }
 
         private void DelButt_Click(object sender, RoutedEventArgs e)
@@ -71,7 +76,6 @@ namespace ProtokolyPomiarow
 
             if (MessageBox.Show("Czy jesteś pewien, że chcesz usunąć ten pomiar?", "Usuwanie pomiaru", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-
                 activeProject.Mesurements.Remove(MesurementsDataGrid.SelectedItem as Mesurement);
                 activeProject.RefreshId();
                 MesurementsDataGrid.Items.Refresh();
@@ -81,6 +85,7 @@ namespace ProtokolyPomiarow
                     DelButt.IsEnabled = false;
                     EditButt.IsEnabled = false;
                 }
+                haveUnsavedChanges = true;
             }
         }
 
@@ -89,6 +94,7 @@ namespace ProtokolyPomiarow
             Window editDefWindow = new EditDefaultsWindow();
             editDefWindow.ShowDialog();
             MesurementsDataGrid.Items.Refresh();
+            haveUnsavedChanges = true;
         }
 
         private void SaveAction(object sender, RoutedEventArgs e)
@@ -117,6 +123,7 @@ namespace ProtokolyPomiarow
             {
                 ds.WriteObject(w, activeProject);
             }
+            haveUnsavedChanges = false;
         }
         private void SaveAsAction(object sender, RoutedEventArgs e)
         {
@@ -136,10 +143,30 @@ namespace ProtokolyPomiarow
             {
                 ds.WriteObject(w, activeProject);
             }
+            haveUnsavedChanges = false;
         }
 
         private void OpenMenuButt_Click(object sender, RoutedEventArgs e)
         {
+            if (haveUnsavedChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Czy zapisać zmiany w projekcie?", "Zmiany", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Cancel:
+                            return;
+                    case MessageBoxResult.Yes:
+                        {
+                            SaveAction(sender, null);
+                            if (haveUnsavedChanges)
+                                return;
+                            break;
+                        }
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+
             var ds = new DataContractSerializer(typeof(Project), null, 1000, false, true, null);
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -167,6 +194,56 @@ namespace ProtokolyPomiarow
                         DelButt.IsEnabled = false;
                         EditButt.IsEnabled = false;
                     }
+                }
+            }
+            haveUnsavedChanges = false;
+        }
+        private void NewProject(object sender, RoutedEventArgs e)
+        {
+            if (haveUnsavedChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Czy zapisać zmiany w projekcie?", "Zmiany", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Cancel:
+                        return;
+                    case MessageBoxResult.Yes:
+                        {
+                            SaveAction(sender, null);
+                            if (haveUnsavedChanges)
+                                return;
+                            break;
+                        }
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+
+            activeProject = new Project();
+            mesurementViewSource.Source = activeProject.Mesurements;
+            MesurementsDataGrid.Items.Refresh();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(haveUnsavedChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Czy zapisać zmiany w projekcie?", "Zmiany", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Cancel:
+                        {
+                            e.Cancel = true;
+                            break;
+                        }
+                    case MessageBoxResult.Yes:
+                        {
+                            SaveAction(sender, null);
+                            if (haveUnsavedChanges)
+                                e.Cancel = true;
+                            break;
+                        }
+                    case MessageBoxResult.No:
+                        break;
                 }
             }
         }

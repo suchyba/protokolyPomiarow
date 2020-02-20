@@ -50,6 +50,7 @@ namespace ProtokolyPomiarow.Windows
                 (CableTypeComboBox.SelectedItem as CableType).Attenuation = double.Parse(CableTypeAttenuationTextBox.Text);
 
                 MainWindow.activeProject.RefreshAllAttenuation();
+                this.Close();
             }
             catch (System.FormatException)
             {

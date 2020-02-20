@@ -15,6 +15,7 @@ namespace ProtokolyPomiarow.Data
         [DataMember] public double PigAttenuation { get; set; } = 0.25;
         [DataMember] public List<Mesurement> Mesurements { get; private set; } = new List<Mesurement>();
         [DataMember] public List<CableType> CableTypes { get; private set; } = new List<CableType>();
+        [DataMember] public string Localization { get; set; } = null;
         public void AddMesurement(string source, string dest, CableType type, int now, double dist, int cop, int cow, double realA)
         {
             Mesurement m = new Mesurement(Mesurements.Count + 1, source, dest, type, now, dist, cop, cow, realA);

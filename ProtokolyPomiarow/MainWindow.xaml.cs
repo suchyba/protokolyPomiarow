@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Input;
 using System.Xml;
 
 namespace ProtokolyPomiarow
@@ -17,6 +18,9 @@ namespace ProtokolyPomiarow
     {
         public static Project activeProject { get; private set; } = new Project();
         private System.Windows.Data.CollectionViewSource mesurementViewSource;
+        public static RoutedCommand SaveCommand = new RoutedCommand();
+        public static RoutedCommand OpenCommand = new RoutedCommand();
+        public static RoutedCommand SaveAsCommand = new RoutedCommand();
         public MainWindow()
         {
             InitializeComponent();
@@ -25,12 +29,20 @@ namespace ProtokolyPomiarow
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             mesurementViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("mesurementViewSource")));
-            // Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
-            // mesurementViewSource.Źródło = [ogólne źródło danych]
 
             mesurementViewSource.Source = activeProject.Mesurements;
             activeProject.AddCableType("Jednomod", 0.25);
             activeProject.AddCableType("Wielomod", 0.3);
+
+            SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(SaveCommand, SaveAction));
+
+            OpenCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(OpenCommand, OpenMenuButt_Click));
+
+            SaveAsCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift));
+            CommandBindings.Add(new CommandBinding(SaveAsCommand, SaveAsAction));
+
         }
 
         private void AddButt_Click(object sender, RoutedEventArgs e)
@@ -79,19 +91,50 @@ namespace ProtokolyPomiarow
             MesurementsDataGrid.Items.Refresh();
         }
 
-        private void SaveMenuButt_Click(object sender, RoutedEventArgs e)
+        private void SaveAction(object sender, RoutedEventArgs e)
+        {
+            string loc = null;
+            if (activeProject.Localization == null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Projekt pomiarów (*.prp)|*.prp";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    loc = saveFileDialog.FileName;
+                    activeProject.Localization = saveFileDialog.FileName;
+                }
+                else
+                    return;
+            }
+            else
+            {
+                loc = activeProject.Localization;
+            }
+            var ds = new DataContractSerializer(typeof(Project), null, 1000, false, true, null);
+
+            XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, ConformanceLevel = ConformanceLevel.Auto };
+            using (XmlWriter w = XmlWriter.Create(loc, settings))
+            {
+                ds.WriteObject(w, activeProject);
+            }
+        }
+        private void SaveAsAction(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Projekt pomiarów (*.prp)|*.prp";
             if (saveFileDialog.ShowDialog() == true)
             {
-                var ds = new DataContractSerializer(typeof(Project), null, 1000, false, true, null);
+                activeProject.Localization = saveFileDialog.FileName;
+            }
+            else
+                return;
 
-                XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, ConformanceLevel = ConformanceLevel.Auto};
-                using (XmlWriter w = XmlWriter.Create(saveFileDialog.FileName, settings))
-                {
-                    ds.WriteObject(w, activeProject);
-                }
+            var ds = new DataContractSerializer(typeof(Project), null, 1000, false, true, null);
+
+            XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, ConformanceLevel = ConformanceLevel.Auto };
+            using (XmlWriter w = XmlWriter.Create(saveFileDialog.FileName, settings))
+            {
+                ds.WriteObject(w, activeProject);
             }
         }
 
@@ -107,7 +150,7 @@ namespace ProtokolyPomiarow
                 XmlReaderSettings settings = new XmlReaderSettings() { ConformanceLevel = ConformanceLevel.Auto };
                 using (XmlReader r = XmlReader.Create(openFileDialog.FileName, settings))
                 {
-                    activeProject= ds.ReadObject(r) as Project;
+                    activeProject = ds.ReadObject(r) as Project;
 
                     activeProject.RefreshAllAttenuation();
 

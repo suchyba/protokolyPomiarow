@@ -14,9 +14,10 @@
     <Grid>
         <Menu Height="20" VerticalAlignment="Top" >
             <MenuItem Header="Plik" Height="20">
-                <MenuItem Header="Otwórz" x:Name="OpenMenuButt" Click="OpenMenuButt_Click"/>
-                <MenuItem x:Name="SaveMenuButt" Header="Zapisz" Click="SaveMenuButt_Click"/>
                 <MenuItem x:Name="NewFileMenuButt" Header="Nowy"/>
+                <MenuItem Header="Otwórz (Ctrl + O)" x:Name="OpenMenuButt" Click="OpenMenuButt_Click"/>
+                <MenuItem x:Name="SaveMenuButt" Header="Zapisz (Ctrl + S)" Click="SaveAction"/>
+                <MenuItem x:Name="SaveAsMenuButt" Header="Zapisz jako (Ctrl + Shift + S)" Click="SaveAsAction"/>
                 <MenuItem x:Name="ExportMenuButt" Header="Eksportuj (PDF)"/>
             </MenuItem>
             <MenuItem Header="Dane" Height="20">

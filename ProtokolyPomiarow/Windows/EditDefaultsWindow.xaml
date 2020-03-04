@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.EditDefaultsWindow"
         mc:Ignorable="d"
-        Title="Edytuj wartości domyślne" Height="256.991" Width="800" Loaded="Window_Loaded">
+        Title="Edytuj wartości domyślne" Height="256.991" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>

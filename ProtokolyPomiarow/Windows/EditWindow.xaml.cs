@@ -42,6 +42,7 @@ namespace ProtokolyPomiarow.Windows
             WeldCountTextBox.Text = mesurement.CountOfWeld.ToString();
             MesurementTextBox.Text = mesurement.RealAttenuation.ToString();
             CabletypeCombo.SelectedItem = mesurement.Type;
+            SourceTextBox.Focus();
         }
         private void CommitButt_Click(object sender, RoutedEventArgs e)
         {

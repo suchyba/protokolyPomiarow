@@ -26,7 +26,7 @@
                 <MenuItem x:Name="DefValMenuButt" Header="Edytuj wartości domyślne" Click="DefValMenuButt_Click"/>
             </MenuItem>
         </Menu>
-        <TabControl Margin="0,20,0,0.4">
+        <TabControl x:Name="MainTabControl" Margin="0,20,0,0.4">
             <TabItem Header="Nagłówek">
                 <Grid Background="#FFE5E5E5">
                     <GroupBox Header="Informacje wstępne" HorizontalAlignment="Left" Height="156" Margin="10,10,0,0" VerticalAlignment="Top" Width="1510">
@@ -34,48 +34,40 @@
                             <Label Content="Protokół nr " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
                             <TextBox x:Name="ProtocolNumberTextBox" HorizontalAlignment="Left" Height="30" Margin="163,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Arial" VerticalContentAlignment="Center"/>
                             <Label Content="Data dokumentu" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="163,42,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
+                            <DatePicker x:Name="DocumentDatePicker" HorizontalAlignment="Left" Margin="163,42,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
                             <Label Content="Data badania" HorizontalAlignment="Left" Margin="0,81,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="163,84,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
+                            <DatePicker x:Name="MesurementDatePicker" HorizontalAlignment="Left" Margin="163,84,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Zleceniodawca" HorizontalAlignment="Left" Height="156" Margin="10,171,0,0" VerticalAlignment="Top" Width="1510">
                         <Grid Margin="10,10,10,2.8">
+                            <Button x:Name="CustomerButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="729,10,709,70" Click="CustomerButton_Click"/>
                             <Label Content="Dane zleceniodawcy" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <RichTextBox HorizontalAlignment="Left" Height="109" Margin="209,1,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial">
-                                <FlowDocument FontFamily="Arial" Language="pl">
-                                    <Paragraph>
-                                        <Run Text="RichTextBox"/>
-                                    </Paragraph>
-                                </FlowDocument>
-                            </RichTextBox>
+                            <TextBlock x:Name="CustomerInfoBlock" HorizontalAlignment="Left" Height="109" Margin="209,1,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial" Background="White"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Obiekt" HorizontalAlignment="Left" Height="156" Margin="10,332,0,0" VerticalAlignment="Top" Width="1510">
                         <Grid Margin="10,10,10,2.8">
+                            <Button x:Name="ObjectButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="661,10,777,70.2"/>
                             <Label Content="Dane obiektu" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <RichTextBox HorizontalAlignment="Left" Height="109" Margin="141,4,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial">
-                                <FlowDocument FontFamily="Arial" Language="pl">
-                                    <Paragraph>
-                                        <Run Text="RichTextBox"/>
-                                    </Paragraph>
-                                </FlowDocument>
-                            </RichTextBox>
+                            <TextBlock x:Name="ObjectInfoBlock" HorizontalAlignment="Left" Height="109" Margin="141,4,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial" Background="White"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Przyrządy pomiarowe" HorizontalAlignment="Left" Height="116" Margin="10,493,0,0" VerticalAlignment="Top" Width="1510">
                         <Grid Margin="10,10,10,2.8">
                             <Label Content="Źródło światła" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
+                            <Button x:Name="SourceButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="875,0,568,47.2"/>
                             <Label Content="Miernik" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold" Margin="0,39,0,0"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center"/>
-                            <TextBox HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center"/>
+                            <Label HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
+                            <Button x:Name="GaugeButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="811,39,632,8.2"/>
+                            <Label HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Tabela Pomiarów">
                 <Grid Background="#FFE5E5E5" DataContext="{StaticResource mesurementViewSource}">
-                    <DataGrid x:Name="MesurementsDataGrid" Margin="0,0,0,90" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" FontFamily="Arial" CanUserAddRows="False" >
+                    <DataGrid x:Name="MesurementsDataGrid" Margin="0,0,0,90" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" FontFamily="Arial" CanUserAddRows="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Number}" ClipboardContentBinding="{x:Null}" Header="L.p." IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" MinWidth="50"/>
@@ -85,7 +77,7 @@
                             <DataGridTextColumn Binding="{Binding Distance}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Długość [km]"/>
                             <DataGridTextColumn Binding="{Binding MaxAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wyliczona maksymalna wartość tłumienności [dB]" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding RealAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zmierzona tłumienność [dB]"/>
-                            <DataGridTextColumn Binding="{Binding PropperValue}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zgodne"/>
+                            <DataGridTextColumn Binding="{Binding PropperValue}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wynik"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="AddButt" Content="Dodaj pomiar" HorizontalAlignment="Right" Margin="0,0,10,30" VerticalAlignment="Bottom" Height="40" Width="100" Click="AddButt_Click" IsDefault="True"/>

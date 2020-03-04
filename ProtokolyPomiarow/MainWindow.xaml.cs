@@ -2,6 +2,7 @@
 using ProtokolyPomiarow.Data;
 using ProtokolyPomiarow.MesurementsClass;
 using ProtokolyPomiarow.Windows;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -17,11 +18,16 @@ namespace ProtokolyPomiarow
     public partial class MainWindow : Window
     {
         public static Project activeProject { get; private set; } = new Project();
+        public static GeneralProgramData ProgramData { get; private set; }
         private System.Windows.Data.CollectionViewSource mesurementViewSource;
-        public static RoutedCommand SaveCommand = new RoutedCommand();
-        public static RoutedCommand OpenCommand = new RoutedCommand();
-        public static RoutedCommand SaveAsCommand = new RoutedCommand();
-        public static RoutedCommand NewCommand = new RoutedCommand();
+
+        public static List<string> Customers { get; private set; } = new List<string>();
+
+        private static RoutedCommand SaveCommand = new RoutedCommand();
+        private static RoutedCommand OpenCommand = new RoutedCommand();
+        private static RoutedCommand SaveAsCommand = new RoutedCommand();
+        private static RoutedCommand NewCommand = new RoutedCommand();
+        private static RoutedCommand DuplicateCommand = new RoutedCommand();
 
         private bool haveUnsavedChanges = false;
         public MainWindow()
@@ -46,6 +52,23 @@ namespace ProtokolyPomiarow
 
             NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(NewCommand, NewProject));
+
+            DuplicateCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(DuplicateCommand, DuplicateMesurement));
+
+            Customers.Add("test\ntak\nto piszę\nw czterech liniach");
+            Customers.Add("test1");
+            Customers.Add("test2");
+
+        }
+
+        private void DuplicateMesurement(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(MainTabControl.SelectedIndex == 1 && MesurementsDataGrid.SelectedItem != null)
+            {
+                activeProject.AddMesurement(MesurementsDataGrid.SelectedItem as Mesurement);
+                MesurementsDataGrid.Items.Refresh();
+            }
         }
 
         private void AddButt_Click(object sender, RoutedEventArgs e)
@@ -53,6 +76,10 @@ namespace ProtokolyPomiarow
             Window addWindow = new AddWindow();
             addWindow.ShowDialog();
             MesurementsDataGrid.Items.Refresh();
+
+            if (MesurementsDataGrid.Items.Count == 0)
+                return;
+
             EditButt.IsEnabled = true;
             DelButt.IsEnabled = true;
             haveUnsavedChanges = true;
@@ -246,6 +273,13 @@ namespace ProtokolyPomiarow
                         break;
                 }
             }
+        }
+
+        private void CustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window c = new CustomersWindow();
+            c.ShowDialog();
+            CustomerInfoBlock.Text = activeProject.CustomerInfo;
         }
     }
 }

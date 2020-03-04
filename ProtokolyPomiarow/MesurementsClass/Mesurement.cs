@@ -53,6 +53,20 @@ namespace ProtokolyPomiarow.MesurementsClass
 
             PropperValue = RealAttenuation < MaxAttenuation;
         }
+        public Mesurement(Mesurement m, int pos)
+        {
+            Number = pos;
+            Source = m.Source;
+            Destination = m.Destination;
+            Type = m.Type;
+            NumberOfWire = m.NumberOfWire;
+            Distance = m.Distance;
+            CountOfPig = m.CountOfPig;
+            CountOfWeld = m.CountOfWeld;
+            RealAttenuation = m.RealAttenuation;
+            MaxAttenuation = m.MaxAttenuation;
+            PropperValue = m.PropperValue;
+        }
 
         public void RefreshAttenuation()
         {

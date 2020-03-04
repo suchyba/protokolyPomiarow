@@ -16,6 +16,13 @@ namespace ProtokolyPomiarow.Data
         [DataMember] public List<Mesurement> Mesurements { get; private set; } = new List<Mesurement>();
         [DataMember] public List<CableType> CableTypes { get; private set; } = new List<CableType>();
         [DataMember] public string Localization { get; set; } = null;
+        [DataMember] public int ProtocolNumber { get; set; }
+        [DataMember] public DateTime DocumentDate { get; set; }
+        [DataMember] public DateTime MesurementDate { get; set; }
+        [DataMember] public string CustomerInfo { get; set; }
+        [DataMember] public string ObjectInfo { get; set; }
+        [DataMember] public string LightSourceInfo { get; set; }
+        [DataMember] public string GaugeInfo { get; set; }
         public Project()
         {
             AddCableType("Jednomod", 0.25);
@@ -25,6 +32,10 @@ namespace ProtokolyPomiarow.Data
         {
             Mesurement m = new Mesurement(Mesurements.Count + 1, source, dest, type, now, dist, cop, cow, realA);
             Mesurements.Add(m);
+        }
+        public void AddMesurement(Mesurement m)
+        {
+            Mesurements.Add(new Mesurement(m, Mesurements.Count + 1));
         }
         public void AddCableType(string name, double a)
         {

@@ -5,9 +5,11 @@ using ProtokolyPomiarow.Properties;
 using ProtokolyPomiarow.Windows;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Xml;
 
@@ -66,7 +68,9 @@ namespace ProtokolyPomiarow
                 }
             }
             catch
-            { }
+            { 
+            
+            }
         }
 
         private void DuplicateMesurement(object sender, ExecutedRoutedEventArgs e)
@@ -313,9 +317,44 @@ namespace ProtokolyPomiarow
 
         private void CustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            Window c = new CustomersWindow();
+            Window c = new ObjectsListWindow(PropertyBinding.Customer);
             c.ShowDialog();
             CustomerInfoBlock.Text = activeProject.CustomerInfo;
+        }
+
+        private void ObjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window c = new ObjectsListWindow(PropertyBinding.Building);
+            c.ShowDialog();
+            ObjectInfoBlock.Text = activeProject.ObjectInfo;
+        }
+
+        private void SourceButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window c = new ObjectsListWindow(PropertyBinding.LightSource);
+            c.ShowDialog();
+            LightSourceLabel.Content = activeProject.LightSourceInfo;
+        }
+
+        private void GaugeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window c = new ObjectsListWindow(PropertyBinding.Gauge);
+            c.ShowDialog();
+            GaugeLabel.Content = activeProject.GaugeInfo;
+        }
+    }
+
+    [ValueConversion(typeof(bool), typeof(String))]
+    public class BoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value == true ? "Tak" : "Nie";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (string)value == "Tak" ? true : false;
         }
     }
 }

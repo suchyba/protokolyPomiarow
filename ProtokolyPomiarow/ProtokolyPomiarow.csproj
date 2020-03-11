@@ -128,8 +128,8 @@
     <Compile Include="Windows\AddWindow.xaml.cs">
       <DependentUpon>AddWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\CustomersWindow.xaml.cs">
-      <DependentUpon>CustomersWindow.xaml</DependentUpon>
+    <Compile Include="Windows\ObjectsListWindow.xaml.cs">
+      <DependentUpon>ObjectsListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EditDefaultsWindow.xaml.cs">
       <DependentUpon>EditDefaultsWindow.xaml</DependentUpon>
@@ -137,8 +137,8 @@
     <Compile Include="Windows\EditWindow.xaml.cs">
       <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ModifyCustomerWindow.xaml.cs">
-      <DependentUpon>ModifyCustomerWindow.xaml</DependentUpon>
+    <Compile Include="Windows\ModifyObjectWindow.xaml.cs">
+      <DependentUpon>ModifyObjectWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -156,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\CustomersWindow.xaml">
+    <Page Include="Windows\ObjectsListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,7 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ModifyCustomerWindow.xaml">
+    <Page Include="Windows\ModifyObjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.MainWindow"
         mc:Ignorable="d"
-        Title="Protokoły pomiarów światłowodowych" SizeToContent="Manual" Loaded="Window_Loaded" 
+        Title="Protokoły pomiarów sieci światłowodowych" SizeToContent="Manual" Loaded="Window_Loaded" 
         Height="840" Width="1550" WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Closing="Window_Closing">
     <Window.Resources>
         <CollectionViewSource x:Key="mesurementViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:Mesurement}, CreateList=True}"/>
+        <local:BoolConverter x:Key="BoolConv"/>
     </Window.Resources>
     <Grid>
         <Menu Height="20" VerticalAlignment="Top" >
@@ -48,7 +49,7 @@
                     </GroupBox>
                     <GroupBox Header="Obiekt" HorizontalAlignment="Left" Height="156" Margin="10,332,0,0" VerticalAlignment="Top" Width="1510">
                         <Grid Margin="10,10,10,2.8">
-                            <Button x:Name="ObjectButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="661,10,777,70.2"/>
+                            <Button x:Name="ObjectButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="661,10,777,70.2" Click="ObjectButton_Click"/>
                             <Label Content="Dane obiektu" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
                             <TextBlock x:Name="ObjectInfoBlock" HorizontalAlignment="Left" Height="109" Margin="141,4,0,0" VerticalAlignment="Top" Width="515" FontSize="20" FontFamily="Arial" Background="White"/>
                         </Grid>
@@ -56,10 +57,10 @@
                     <GroupBox Header="Przyrządy pomiarowe" HorizontalAlignment="Left" Height="116" Margin="10,493,0,0" VerticalAlignment="Top" Width="1510">
                         <Grid Margin="10,10,10,2.8">
                             <Label Content="Źródło światła" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <Button x:Name="SourceButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="875,0,568,47.2"/>
+                            <Button x:Name="SourceButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="875,0,568,47.2" Click="SourceButton_Click"/>
                             <Label Content="Miernik" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold" Margin="0,39,0,0"/>
                             <Label x:Name="LightSourceLabel" HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
-                            <Button x:Name="GaugeButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="811,39,632,8.2"/>
+                            <Button x:Name="GaugeButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="811,39,632,8.2" Click="GaugeButton_Click"/>
                             <Label x:Name="GaugeLabel" HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
                         </Grid>
                     </GroupBox>
@@ -70,14 +71,14 @@
                     <DataGrid x:Name="MesurementsDataGrid" Margin="0,0,0,90" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" FontFamily="Arial" CanUserAddRows="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Number}" ClipboardContentBinding="{x:Null}" Header="L.p." IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" MinWidth="50"/>
-                            <DataGridTextColumn Binding="{Binding Destination}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Cel" MinWidth="50"/>
+                            <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" MinWidth="200"/>
+                            <DataGridTextColumn Binding="{Binding Destination}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Cel" MinWidth="200"/>
                             <DataGridTextColumn Binding="{Binding Type.Name}" ClipboardContentBinding="{x:Null}" Header="Typ światłowodu" IsReadOnly="True" CanUserSort="False"/>
                             <DataGridTextColumn Binding="{Binding NumberOfWire}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Numer włókna"/>
                             <DataGridTextColumn Binding="{Binding Distance}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Długość [km]"/>
                             <DataGridTextColumn Binding="{Binding MaxAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wyliczona maksymalna wartość tłumienności [dB]" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding RealAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zmierzona tłumienność [dB]"/>
-                            <DataGridTextColumn Binding="{Binding PropperValue}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wynik"/>
+                            <DataGridTextColumn Binding="{Binding PropperValue, Converter={StaticResource BoolConv}}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wynik"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="AddButt" Content="Dodaj pomiar" HorizontalAlignment="Right" Margin="0,0,10,30" VerticalAlignment="Bottom" Height="40" Width="100" Click="AddButt_Click" IsDefault="True"/>
@@ -89,6 +90,5 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

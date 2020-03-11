@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ProtokolyPomiarow.Data;
 using ProtokolyPomiarow.MesurementsClass;
+using ProtokolyPomiarow.Properties;
 using ProtokolyPomiarow.Windows;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,9 @@ namespace ProtokolyPomiarow
     public partial class MainWindow : Window
     {
         public static Project activeProject { get; private set; } = new Project();
-        public static GeneralProgramData ProgramData { get; private set; }
+        public static Workspace activeWorkspace { get; private set; }
+        public static Workspace ProgramData { get; private set; }
         private System.Windows.Data.CollectionViewSource mesurementViewSource;
-
-        public static List<string> Customers { get; private set; } = new List<string>();
 
         private static RoutedCommand SaveCommand = new RoutedCommand();
         private static RoutedCommand OpenCommand = new RoutedCommand();
@@ -56,15 +56,22 @@ namespace ProtokolyPomiarow
             DuplicateCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(DuplicateCommand, DuplicateMesurement));
 
-            Customers.Add("test\ntak\nto piszę\nw czterech liniach");
-            Customers.Add("test1");
-            Customers.Add("test2");
-
+            var ds = new DataContractSerializer(typeof(Workspace), null, 1000, false, false, null);
+            XmlReaderSettings settings = new XmlReaderSettings() { ConformanceLevel = ConformanceLevel.Auto };
+            try
+            {
+                using (XmlReader r = XmlReader.Create(Settings.Default.workspaceLocation, settings))
+                {
+                    activeWorkspace = ds.ReadObject(r) as Workspace ?? new Workspace();
+                }
+            }
+            catch
+            { }
         }
 
         private void DuplicateMesurement(object sender, ExecutedRoutedEventArgs e)
         {
-            if(MainTabControl.SelectedIndex == 1 && MesurementsDataGrid.SelectedItem != null)
+            if (MainTabControl.SelectedIndex == 1 && MesurementsDataGrid.SelectedItem != null)
             {
                 activeProject.AddMesurement(MesurementsDataGrid.SelectedItem as Mesurement);
                 MesurementsDataGrid.Items.Refresh();
@@ -181,7 +188,7 @@ namespace ProtokolyPomiarow
                 switch (result)
                 {
                     case MessageBoxResult.Cancel:
-                            return;
+                        return;
                     case MessageBoxResult.Yes:
                         {
                             SaveAction(sender, null);
@@ -221,6 +228,28 @@ namespace ProtokolyPomiarow
                         DelButt.IsEnabled = false;
                         EditButt.IsEnabled = false;
                     }
+                    if (activeProject.CustomerInfo != null && activeWorkspace.Customers.Find(s => s == activeProject.CustomerInfo) == null)
+                    {
+                        activeWorkspace.Customers.Add(activeProject.CustomerInfo);
+                    }
+                    if (activeProject.ObjectInfo != null && activeWorkspace.Objects.Find(s => s == activeProject.ObjectInfo) == null)
+                    {
+                        activeWorkspace.Objects.Add(activeProject.ObjectInfo);
+                    }
+                    if (activeProject.LightSourceInfo != null && activeWorkspace.LightSources.Find(s => s == activeProject.LightSourceInfo) == null)
+                    {
+                        activeWorkspace.LightSources.Add(activeProject.LightSourceInfo);
+                    }
+                    if (activeProject.GaugeInfo != null && activeWorkspace.Gauges.Find(s => s == activeProject.GaugeInfo) == null)
+                    {
+                        activeWorkspace.Gauges.Add(activeProject.GaugeInfo);
+                    }
+
+
+                    CustomerInfoBlock.Text = activeProject.CustomerInfo;
+                    ObjectInfoBlock.Text = activeProject.ObjectInfo;
+                    LightSourceLabel.Content = activeProject.LightSourceInfo;
+                    GaugeLabel.Content = activeProject.GaugeInfo;
                 }
             }
             haveUnsavedChanges = false;
@@ -252,7 +281,7 @@ namespace ProtokolyPomiarow
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(haveUnsavedChanges)
+            if (haveUnsavedChanges)
             {
                 MessageBoxResult result = MessageBox.Show("Czy zapisać zmiany w projekcie?", "Zmiany", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
                 switch (result)
@@ -272,6 +301,13 @@ namespace ProtokolyPomiarow
                     case MessageBoxResult.No:
                         break;
                 }
+            }
+
+            var ds = new DataContractSerializer(typeof(Workspace), null, 1000, false, false, null);
+            XmlWriterSettings settings = new XmlWriterSettings() { Indent = true, ConformanceLevel = ConformanceLevel.Auto };
+            using (XmlWriter w = XmlWriter.Create(Settings.Default.workspaceLocation, settings))
+            {
+                ds.WriteObject(w, activeWorkspace);
             }
         }
 

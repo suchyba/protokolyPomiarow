@@ -122,8 +122,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\GeneralProgramData.cs" />
+    <Compile Include="Data\Workspace.cs" />
     <Compile Include="Data\Project.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Windows\AddWindow.xaml.cs">
       <DependentUpon>AddWindow.xaml</DependentUpon>
     </Compile>

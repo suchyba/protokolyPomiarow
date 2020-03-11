@@ -22,20 +22,6 @@ namespace ProtokolyPomiarow.MesurementsClass
         public double MaxAttenuation { get;  private set; }
         [DataMember] public double RealAttenuation { get; set; }
         [DataMember] public bool PropperValue { get; set; }
-        /*public Mesurement()
-        {
-            Number = -1;
-            Source = "";
-            Destination = "";
-            Type = null;
-            NumberOfWire = -1;
-            Distance = -1;
-            CountOfPig = -1;
-            CountOfWeld = -1;
-            MaxAttenuation = -1;
-            RealAttenuation = -1;
-            PropperValue = false;
-        }*/
 
         public Mesurement(int position, string source, string dest, CableType type, int now, double dist, int cop, int cow, double realA)
         {

@@ -64,7 +64,7 @@ namespace ProtokolyPomiarow.Windows
                     }
                 case WindowMode.ADD:
                     {
-                        MainWindow.Customers.Add(CustomerInfoTextBox.Text);
+                        MainWindow.activeWorkspace.Customers.Add(CustomerInfoTextBox.Text);
                         Close();
                         break;
                     }
@@ -79,7 +79,7 @@ namespace ProtokolyPomiarow.Windows
             {
                 case WindowMode.EDIT:
                     {
-                        MainWindow.Customers.Remove(CustomersWindow.SelectedCustomer);
+                        MainWindow.activeWorkspace.Customers.Remove(CustomersWindow.SelectedCustomer);
                         CustomersWindow.SelectedCustomer = null;
                         Close();
                         break;

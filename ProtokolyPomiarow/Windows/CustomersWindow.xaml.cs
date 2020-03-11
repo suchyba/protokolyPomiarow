@@ -23,10 +23,10 @@ namespace ProtokolyPomiarow.Windows
         public CustomersWindow()
         {
             InitializeComponent();
-            CustomersListBox.ItemsSource = MainWindow.Customers;
+            CustomersListBox.ItemsSource = MainWindow.activeWorkspace.Customers;
             CustomersListBox.SelectedItem = MainWindow.activeProject.CustomerInfo;
             CustomersListBox.Focus();
-            SelectedCustomer = MainWindow.Customers.Select(s => s).Where(s => s == CustomersListBox.SelectedItem as string).FirstOrDefault();
+            SelectedCustomer = MainWindow.activeWorkspace.Customers.Select(s => s).Where(s => s == CustomersListBox.SelectedItem as string).FirstOrDefault();
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace ProtokolyPomiarow.Windows
 
             if (SelectedCustomer != null)
             {
-                MainWindow.Customers[CustomersListBox.SelectedIndex] = SelectedCustomer;
+                MainWindow.activeWorkspace.Customers[CustomersListBox.SelectedIndex] = SelectedCustomer;
                 CustomersListBox.SelectedItem = SelectedCustomer;
             }
             else

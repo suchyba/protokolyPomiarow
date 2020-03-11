@@ -58,9 +58,9 @@
                             <Label Content="Źródło światła" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
                             <Button x:Name="SourceButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="875,0,568,47.2"/>
                             <Label Content="Miernik" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold" Margin="0,39,0,0"/>
-                            <Label HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
+                            <Label x:Name="LightSourceLabel" HorizontalAlignment="Left" Height="30" Margin="149,0,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
                             <Button x:Name="GaugeButton" Content="+" RenderTransformOrigin="-24,0.2" Margin="811,39,632,8.2"/>
-                            <Label HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
+                            <Label x:Name="GaugeLabel" HorizontalAlignment="Left" Height="30" Margin="85,39,0,0" VerticalAlignment="Top" Width="721" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

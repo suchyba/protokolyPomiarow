@@ -28,11 +28,13 @@ namespace ProtokolyPomiarow.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource cableTypeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("cableTypeViewSource")));
-            // Załaduj dane poprzez ustawienie właściwości CollectionViewSource.Source:
-            // cableTypeViewSource.Źródło = [ogólne źródło danych]
             cableTypeViewSource.Source = MainWindow.activeProject.CableTypes;
+            List<string> results = new List<string>();
+            results.Add("Tak");
+            results.Add("Nie");
+
+            ResultComboBox.ItemsSource = results;
             SourceTexBox.Focus();
         }
 
@@ -46,6 +48,7 @@ namespace ProtokolyPomiarow.Windows
             WeldCountextBox.BorderBrush = SystemColors.ActiveBorderBrush;
             DistanceTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
             MesurementTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
+            ResultComboBox.BorderBrush = SystemColors.ActiveBorderBrush;
 
             bool error = false;
 
@@ -94,6 +97,14 @@ namespace ProtokolyPomiarow.Windows
                 MesurementTextBox.BorderBrush = Brushes.Red;
                 error = true;
             }
+            if(ManuallyResultCheckBox.IsChecked == true)
+            {
+                if(ResultComboBox.SelectedItem == null)
+                {
+                    ResultComboBox.BorderBrush = Brushes.Red;
+                    error = true;
+                }
+            }
 
             if (error)
             {
@@ -101,9 +112,25 @@ namespace ProtokolyPomiarow.Windows
                 return;
             }
 
-            MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real);
+            if(ManuallyResultCheckBox.IsChecked == true)
+            {
+                if((string)ResultComboBox.SelectedItem == "Tak")
+                    MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, true);
+                else
+                    MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, false);
+            }
+            else
+                MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real);
 
             this.Close();
+        }
+
+        private void ManuallyResultCheckBoxCheckChange(object sender, RoutedEventArgs e)
+        {
+            if (ManuallyResultCheckBox.IsChecked == true)
+                ResultComboBox.IsEnabled = true;
+            else if(ManuallyResultCheckBox.IsChecked == false)
+                ResultComboBox.IsEnabled = false;
         }
     }
 }

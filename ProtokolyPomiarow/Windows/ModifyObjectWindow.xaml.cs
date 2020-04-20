@@ -88,6 +88,21 @@ namespace ProtokolyPomiarow.Windows
                                     MainWindow.activeWorkspace.Gauges.Add(InfoTextBox.Text);
                                     break;
                                 }
+                            case PropertyBinding.DoingPerson:
+                                {
+                                    MainWindow.activeWorkspace.People.Add(InfoTextBox.Text);
+                                    break;
+                                }
+                            case PropertyBinding.VeryfingPerson:
+                                {
+                                    MainWindow.activeWorkspace.People.Add(InfoTextBox.Text);
+                                    break;
+                                }
+                            case PropertyBinding.Opinion:
+                                {
+                                    MainWindow.activeWorkspace.Opinions.Add(InfoTextBox.Text);
+                                    break;
+                                }
                             default:
                                 {
                                     break;
@@ -127,6 +142,21 @@ namespace ProtokolyPomiarow.Windows
                             case PropertyBinding.Gauge:
                                 {
                                     MainWindow.activeWorkspace.Gauges.Remove(ObjectsListWindow.SelectedObj);
+                                    break;
+                                }
+                            case PropertyBinding.DoingPerson:
+                                {
+                                    MainWindow.activeWorkspace.People.Remove(ObjectsListWindow.SelectedObj);
+                                    break;
+                                }
+                            case PropertyBinding.VeryfingPerson:
+                                {
+                                    MainWindow.activeWorkspace.People.Remove(ObjectsListWindow.SelectedObj);
+                                    break;
+                                }
+                            case PropertyBinding.Opinion:
+                                {
+                                    MainWindow.activeWorkspace.Opinions.Remove(ObjectsListWindow.SelectedObj);
                                     break;
                                 }
                             default:

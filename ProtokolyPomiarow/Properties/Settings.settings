@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="workspaceLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">workspace.xml</Value>
+      <Value Profile="(Default)">settings/workspace.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

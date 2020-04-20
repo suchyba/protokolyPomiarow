@@ -1,10 +1,7 @@
 ﻿using ProtokolyPomiarow.MesurementsClass;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProtokolyPomiarow.Data
 {
@@ -16,13 +13,17 @@ namespace ProtokolyPomiarow.Data
         [DataMember] public List<Mesurement> Mesurements { get; private set; } = new List<Mesurement>();
         [DataMember] public List<CableType> CableTypes { get; private set; } = new List<CableType>();
         [DataMember] public string Localization { get; set; } = null;
-        [DataMember] public int ProtocolNumber { get; set; }
+        [DataMember] public string ProtocolNumber { get; set; }
         [DataMember] public DateTime DocumentDate { get; set; }
-        [DataMember] public DateTime MesurementDate { get; set; }
+        [DataMember] public DateTime? MesurementDate { get; set; }
         [DataMember] public string CustomerInfo { get; set; }
         [DataMember] public string ObjectInfo { get; set; }
         [DataMember] public string LightSourceInfo { get; set; }
         [DataMember] public string GaugeInfo { get; set; }
+        [DataMember] public string DoingPerson { get; set; }
+        [DataMember] public string VeryfingPerson { get; set; }
+        [DataMember] public string Opinion { get; set; }
+        [DataMember] public string Conclusions { get; set; }
         public Project()
         {
             AddCableType("Jednomod", 0.25);
@@ -32,10 +33,24 @@ namespace ProtokolyPomiarow.Data
         {
             Mesurement m = new Mesurement(Mesurements.Count + 1, source, dest, type, now, dist, cop, cow, realA);
             Mesurements.Add(m);
+            RefreshId();
         }
         public void AddMesurement(Mesurement m)
         {
             Mesurements.Add(new Mesurement(m, Mesurements.Count + 1));
+            RefreshId();
+        }
+        public void AddMesurement(string source, string dest, CableType type, int now, double dist, int cop, int cow, double realA, bool result)
+        {
+            Mesurement m = new Mesurement(Mesurements.Count + 1, source, dest, type, now, dist, cop, cow, realA, result);
+            Mesurements.Add(m);
+            RefreshId();
+        }
+        public void AddLabel(string label)
+        {
+            Mesurement m = new Mesurement(label);
+            Mesurements.Add(m);
+            RefreshId();
         }
         public void AddCableType(string name, double a)
         {
@@ -47,7 +62,10 @@ namespace ProtokolyPomiarow.Data
             int i = 1;
             foreach (var item in Mesurements)
             {
-                item.Number = i++;
+                if (item.Number == null)
+                    continue;
+                else
+                    item.Number = i++;
             }
         }
         public void RefreshAllAttenuation()

@@ -6,23 +6,46 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.EditDefaultsWindow"
         mc:Ignorable="d"
-        Title="Edytuj wartości domyślne" Height="256.991" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="Ustawienia" Height="411" Width="785" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
-        <TextBox x:Name="WeldAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="229,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="PigAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="229,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <GroupBox Header="Tłumienność przewodów danych typów [dB/km]" HorizontalAlignment="Left" Height="82" Margin="429,57,0,0" VerticalAlignment="Top" Width="325" FontFamily="Arial">
-            <Grid HorizontalAlignment="Left" Height="73" Margin="10,0,-2.2,-12.2" VerticalAlignment="Top" Width="305" DataContext="{StaticResource cableTypeViewSource}">
-                <ComboBox x:Name="CableTypeComboBox" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Attenuation" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="CableTypeComboBox_SelectionChanged"/>
-                <TextBox x:Name="CableTypeAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="175,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="4.045,-3.353" VerticalContentAlignment="Center"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="379*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="SafeButton" Content="Zapisz" HorizontalAlignment="Left" Margin="245,320,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="SafeButton_Click" Grid.Column="1" Height="20"/>
+        <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" Margin="60,320,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="CancelButton_Click" Grid.Column="1" Height="20"/>
+        <GroupBox Header="Parametry pomiarów" HorizontalAlignment="Left" Height="195" Margin="5,5,0,0" VerticalAlignment="Top" Width="385">
+            <Grid HorizontalAlignment="Left" Height="185" Margin="-5,-5,-282,-103" VerticalAlignment="Top" Width="375">
+                <TextBox x:Name="WeldAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="194,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontFamily="Arial" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="PigAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="194,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontFamily="Arial" VerticalContentAlignment="Center"/>
+                <GroupBox Header="Tłumienność przewodów danych typów [dB/km]" HorizontalAlignment="Left" Height="82" Margin="14,93,0,0" VerticalAlignment="Top" Width="325" FontFamily="Arial">
+                    <Grid HorizontalAlignment="Left" Height="65" Margin="0,0,-2,-4" VerticalAlignment="Top" Width="315" DataContext="{StaticResource cableTypeViewSource}">
+                        <ComboBox x:Name="CableTypeComboBox" HorizontalAlignment="Left" Margin="14,21,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Attenuation" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="CableTypeComboBox_SelectionChanged" Height="23"/>
+                        <TextBox x:Name="CableTypeAttenuationTextBox" HorizontalAlignment="Left" Height="23" Margin="174,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="4.045,-3.353" VerticalContentAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+                <Label Content="Tłumienność spawów" HorizontalAlignment="Left" Margin="14,13,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="125"/>
+                <Label Content="Tłumienność złączy fizycznych" HorizontalAlignment="Left" Margin="14,53,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="173"/>
             </Grid>
         </GroupBox>
-        <Label Content="Tłumienność spawów" HorizontalAlignment="Left" Margin="99,57,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-        <Label Content="Tłumienność złączy fizycznych" HorizontalAlignment="Left" Margin="51,115,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-        <Button x:Name="SafeButton" Content="Zapisz" HorizontalAlignment="Left" Margin="679,182,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="SafeButton_Click"/>
-        <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" Margin="580,182,0,0" VerticalAlignment="Top" Width="75" FontFamily="Arial" Click="CancelButton_Click"/>
+        <GroupBox Grid.Column="1" Header="Parametry numeracji protokołów" HorizontalAlignment="Left" Height="110" Margin="5,5,0,0" VerticalAlignment="Top" Width="360">
+            <Grid HorizontalAlignment="Left" Height="85" Margin="0,5,-2,-3" VerticalAlignment="Top" Width="350">
+                <Label Content="Sposób numerowania protokołów" HorizontalAlignment="Left" Margin="9,3,0,0" VerticalAlignment="Top"/>
+                <Label Content="Obecny numer protokołu" HorizontalAlignment="Left" Margin="9,43,0,0" VerticalAlignment="Top"/>
+                <ComboBox Name="NumeringOptionComboBox" HorizontalAlignment="Left" Margin="209,3,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+                <TextBox Name="CurrProjectNumberTextBox"  HorizontalAlignment="Left" Height="23" Margin="209,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Dokument wyjściowy" HorizontalAlignment="Left" Height="140" Margin="5,205,0,0" VerticalAlignment="Top" Width="385">
+            <Grid HorizontalAlignment="Left" Height="110" Margin="5,5,0,0" VerticalAlignment="Top" Width="365">
+                <Image x:Name="LogoImage" HorizontalAlignment="Left" Height="95" Margin="4,8,0,0" VerticalAlignment="Top" Width="100"/>
+                <Button x:Name="LogoImageButt" Content="Wybierz" HorizontalAlignment="Left" Margin="124,48,0,0" VerticalAlignment="Top" Width="75" Click="LogoImageButt_Click"/>
+                <Label Content="Logo" HorizontalAlignment="Left" Margin="124,12,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
 
     </Grid>
 </Window>

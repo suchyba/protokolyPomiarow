@@ -11,17 +11,18 @@ namespace ProtokolyPomiarow.MesurementsClass
     [DataContract]
     public class Mesurement
     {
-        [DataMember] public int Number { get; set; }
+        [DataMember] public int? Number { get; set; }
         [DataMember] public string Source { get; set; }
         [DataMember] public string Destination { get; set; }
         [DataMember] public CableType Type { get; set; }
-        [DataMember] public int NumberOfWire { get; set; }
-        [DataMember] public double Distance { get; set; }
-        [DataMember] public int CountOfPig { get; set; }
-        [DataMember] public int CountOfWeld { get; set; }
-        public double MaxAttenuation { get;  private set; }
-        [DataMember] public double RealAttenuation { get; set; }
-        [DataMember] public bool PropperValue { get; set; }
+        [DataMember] public int? NumberOfWire { get; set; }
+        [DataMember] public double? Distance { get; set; }
+        [DataMember] public int? CountOfPig { get; set; }
+        [DataMember] public int? CountOfWeld { get; set; }
+        public double? MaxAttenuation { get; private set; }
+        [DataMember] public double? RealAttenuation { get; set; }
+        [DataMember] public Nullable<bool> PropperValue { get; set; }
+        [DataMember] public bool IsPropperValueManuallySet { get; set; } = false;
 
         public Mesurement(int position, string source, string dest, CableType type, int now, double dist, int cop, int cow, double realA)
         {
@@ -39,6 +40,11 @@ namespace ProtokolyPomiarow.MesurementsClass
 
             PropperValue = RealAttenuation < MaxAttenuation;
         }
+        public Mesurement(int position, string source, string dest, CableType type, int now, double dist, int cop, int cow, double realA, bool result) : this(position, source, dest, type, now, dist, cop, cow, realA)
+        {
+            IsPropperValueManuallySet = true;
+            PropperValue = result;
+        }
         public Mesurement(Mesurement m, int pos)
         {
             Number = pos;
@@ -54,10 +60,29 @@ namespace ProtokolyPomiarow.MesurementsClass
             PropperValue = m.PropperValue;
         }
 
+        public Mesurement(string label)
+        {
+            Number = null;
+            Source = label;
+            Destination = null;
+            Type = null;
+            NumberOfWire = null;
+            Distance = null;
+            CountOfPig = null;
+            CountOfWeld = null;
+            RealAttenuation = null;
+            MaxAttenuation = null;
+            PropperValue = null;
+        }
+
         public void RefreshAttenuation()
         {
-            MaxAttenuation = CountOfWeld * MainWindow.activeProject.WeldAttenuation + CountOfPig * MainWindow.activeProject.PigAttenuation + Distance * Type.Attenuation;
-            PropperValue = RealAttenuation < MaxAttenuation;
+            if (Number != null)
+                MaxAttenuation = CountOfWeld * MainWindow.activeProject.WeldAttenuation + CountOfPig * MainWindow.activeProject.PigAttenuation + Distance * Type.Attenuation;
+            else
+                MaxAttenuation = null;
+            if (!IsPropperValueManuallySet && Number != null)
+                PropperValue = RealAttenuation < MaxAttenuation;
         }
     }
 }

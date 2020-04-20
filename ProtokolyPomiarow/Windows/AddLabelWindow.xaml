@@ -1,0 +1,16 @@
+﻿<Window x:Class="ProtokolyPomiarow.Windows.AddLabelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
+        mc:Ignorable="d"
+        Title="Dodaj rodział" Height="131" Width="500"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,0,1">
+        <TextBox Name="LabelTextBox" HorizontalAlignment="Left" Height="25" Margin="20,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" VerticalContentAlignment="Center"/>
+        <Button Name="AddLabelButton" Content="Dodaj" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Width="80" Click="AddLabelButton_Click" Height="25" IsDefault="True"/>
+        <Label Content="Tytuł" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

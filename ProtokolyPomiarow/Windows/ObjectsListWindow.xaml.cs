@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace ProtokolyPomiarow.Windows
 {
-    public enum PropertyBinding { Customer, Building, LightSource, Gauge };
+    public enum PropertyBinding { Customer, Building, LightSource, Gauge, DoingPerson, VeryfingPerson, Opinion };
     /// <summary>
     /// Logika interakcji dla klasy CustomersWindow.xaml
     /// </summary>
@@ -56,6 +56,27 @@ namespace ProtokolyPomiarow.Windows
                         SelectedObj = MainWindow.activeWorkspace.Gauges.Select(s => s).Where(s => s == ListBox.SelectedItem as string).FirstOrDefault();
                         break;
                     }
+                case PropertyBinding.DoingPerson:
+                    {
+                        ListBox.ItemsSource = MainWindow.activeWorkspace.People;
+                        ListBox.SelectedItem = MainWindow.activeProject.DoingPerson;
+                        SelectedObj = MainWindow.activeWorkspace.People.Select(s => s).Where(s => s == ListBox.SelectedItem as string).FirstOrDefault();
+                        break;
+                    }
+                case PropertyBinding.VeryfingPerson:
+                    {
+                        ListBox.ItemsSource = MainWindow.activeWorkspace.People;
+                        ListBox.SelectedItem = MainWindow.activeProject.VeryfingPerson;
+                        SelectedObj = MainWindow.activeWorkspace.People.Select(s => s).Where(s => s == ListBox.SelectedItem as string).FirstOrDefault();
+                        break;
+                    }
+                case PropertyBinding.Opinion:
+                    {
+                        ListBox.ItemsSource = MainWindow.activeWorkspace.Opinions;
+                        ListBox.SelectedItem = MainWindow.activeProject.Opinion;
+                        SelectedObj = MainWindow.activeWorkspace.Opinions.Select(s => s).Where(s => s == ListBox.SelectedItem as string).FirstOrDefault();
+                        break;
+                    }
                 default:
                     {
                         this.Close();
@@ -95,6 +116,21 @@ namespace ProtokolyPomiarow.Windows
                         MainWindow.activeProject.GaugeInfo = ListBox.SelectedItem as string;
                         break;
                     }
+                case PropertyBinding.DoingPerson:
+                    {
+                        MainWindow.activeProject.DoingPerson = ListBox.SelectedItem as string;
+                        break;
+                    }
+                case PropertyBinding.VeryfingPerson:
+                    {
+                        MainWindow.activeProject.VeryfingPerson = ListBox.SelectedItem as string;
+                        break;
+                    }
+                case PropertyBinding.Opinion:
+                    {
+                        MainWindow.activeProject.Opinion = ListBox.SelectedItem as string;
+                        break;
+                    }
                 default:
                     {
                         this.Close();
@@ -131,6 +167,21 @@ namespace ProtokolyPomiarow.Windows
                     case PropertyBinding.Gauge:
                         {
                             MainWindow.activeWorkspace.Gauges[ListBox.SelectedIndex] = SelectedObj;
+                            break;
+                        }
+                    case PropertyBinding.DoingPerson:
+                        {
+                            MainWindow.activeWorkspace.People[ListBox.SelectedIndex] = SelectedObj;
+                            break;
+                        }
+                    case PropertyBinding.VeryfingPerson:
+                        {
+                            MainWindow.activeWorkspace.People[ListBox.SelectedIndex] = SelectedObj;
+                            break;
+                        }
+                    case PropertyBinding.Opinion:
+                        {
+                            MainWindow.activeWorkspace.Opinions[ListBox.SelectedIndex] = SelectedObj;
                             break;
                         }
                     default:
@@ -194,6 +245,24 @@ namespace ProtokolyPomiarow.Windows
                     {
                         if (MainWindow.activeProject.GaugeInfo != null)
                             MainWindow.activeProject.GaugeInfo = ListBox.SelectedItem as string;
+                        break;
+                    }
+                case PropertyBinding.DoingPerson:
+                    {
+                        if (MainWindow.activeProject.DoingPerson != null)
+                            MainWindow.activeProject.DoingPerson = ListBox.SelectedItem as string;
+                        break;
+                    }
+                case PropertyBinding.VeryfingPerson:
+                    {
+                        if (MainWindow.activeProject.VeryfingPerson != null)
+                            MainWindow.activeProject.VeryfingPerson = ListBox.SelectedItem as string;
+                        break;
+                    }
+                case PropertyBinding.Opinion:
+                    {
+                        if (MainWindow.activeProject.Opinion != null)
+                            MainWindow.activeProject.Opinion = ListBox.SelectedItem as string;
                         break;
                     }
                 default:

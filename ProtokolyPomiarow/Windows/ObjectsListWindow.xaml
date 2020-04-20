@@ -11,7 +11,7 @@
     <Grid>
         <ListBox x:Name="ListBox" Height="314" Margin="10,10,10.2,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
-        <Button x:Name="EditButton" Content="Edytuj/Usuń" Margin="122,329,118.2,0" VerticalAlignment="Top" Click="EditButton_Click" IsEnabled="False"/>
+        <Button x:Name="EditButton" Content="Edytuj/Usuń" Margin="110,329,110.2,0" VerticalAlignment="Top" Click="EditButton_Click" IsEnabled="False"/>
         <Button x:Name="SelectButton" Content="Wybierz" Margin="230,329,10.2,0" VerticalAlignment="Top" Click="SelectButton_Click" IsDefault="True" IsEnabled="False"/>
 
     </Grid>

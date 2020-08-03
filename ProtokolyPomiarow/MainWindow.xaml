@@ -11,7 +11,7 @@
         Height="712" Width="1550" WindowStartupLocation="CenterScreen" WindowState="Normal"
         Closing="Window_Closing" 
         Closed="Window_Closed"
-        FontFamily="Arial">
+        FontFamily="Arial" Icon="logo.png">
     <Window.Resources>
         <CollectionViewSource x:Key="mesurementViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:Mesurement}, CreateList=True}"/>
         <local:BoolConverter x:Key="BoolConv"/>

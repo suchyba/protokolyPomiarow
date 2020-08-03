@@ -11,6 +11,7 @@ using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using ProtokolyPomiarow.Data;
+using ProtokolyPomiarow.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +39,10 @@ namespace ProtokolyPomiarow.PDF
                 MessageBox.Show("Ciąg pliku wyjściowego jest błędny", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            MessageBox.Show($"Tworzę plik PDF o lokalizacji:\n{pdfLocation}", "Informacja", MessageBoxButton.OK, MessageBoxImage.Error);
+           
+            PdfProgress progressWindow = new PdfProgress();
+            progressWindow.Show();
+
             using (var writer = new PdfWriter(File.Open(pdfLocation, FileMode.OpenOrCreate)))
             {
                 using (var pdf = new PdfDocument(writer))
@@ -90,6 +94,8 @@ namespace ProtokolyPomiarow.PDF
                         document.Add(new Paragraph("5. Wyniki pomiarów tłumienności")
                             .SetFont(boldFont));
 
+                        progressWindow.SetProgress(30);
+
                         Table mesurements = new Table(new float[] { 1, 4, 4, 2, 4, 3, 3, 3, 3, 4 });
                         mesurements.SetFontSize(7);
                         mesurements.SetWidth(UnitValue.CreatePercentValue(100));
@@ -103,6 +109,8 @@ namespace ProtokolyPomiarow.PDF
                         mesurements.AddHeaderCell(new Cell().Add(new Paragraph("Rmax [dB]").SetFont(boldFont).SetTextAlignment(TextAlignment.CENTER)).SetVerticalAlignment(VerticalAlignment.MIDDLE));
                         mesurements.AddHeaderCell(new Cell().Add(new Paragraph("R [dB]").SetFont(boldFont).SetTextAlignment(TextAlignment.CENTER)).SetVerticalAlignment(VerticalAlignment.MIDDLE));
                         mesurements.AddHeaderCell(new Cell().Add(new Paragraph("Ocena pomiaru").SetFont(boldFont).SetTextAlignment(TextAlignment.CENTER)).SetVerticalAlignment(VerticalAlignment.MIDDLE));
+
+                        progressWindow.SetProgress(40);
 
                         foreach (var mesure in project.Mesurements)
                         {
@@ -125,6 +133,8 @@ namespace ProtokolyPomiarow.PDF
                         document.Add(mesurements);
                         document.Add(new Paragraph("Oznaczenia: ").SetFont(boldFont).SetFontSize(5).Add(new Text("Lp - liczba porządkowa, R - tłumienność zmierzona, Rmax - obliczona tłumienność maksymalna").SetFont(font)));
 
+                        progressWindow.SetProgress(80);
+
                         document.Add(new Paragraph("6. Uwagi i wnioski\n")
                             .SetFont(boldFont)
                             .Add(new Text($"{project.Conclusions ?? " "}")
@@ -138,6 +148,8 @@ namespace ProtokolyPomiarow.PDF
                         document.Add(new Paragraph("8. Wykowanca pomiarów")
                             .SetFont(boldFont));
 
+                        progressWindow.SetProgress(90);
+
                         Table tab = new Table(2);
                         tab.SetBorder(Border.NO_BORDER);
                         tab.SetWidth(UnitValue.CreatePercentValue(100));
@@ -148,9 +160,11 @@ namespace ProtokolyPomiarow.PDF
                         document.Add(tab);
 
                         document.Close();
+                        progressWindow.SetProgress(100);
                     }
                 }
             }
+            progressWindow.Close();
             MessageBox.Show( "Plik został utworzony!", "Zakończone", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private class HeaderHendler : IEventHandler

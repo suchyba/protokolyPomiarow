@@ -524,7 +524,9 @@ namespace ProtokolyPomiarow
 
             if (savePfdDialog.ShowDialog() == true)
             {
+                this.IsEnabled = false;
                 PdfDesigner.MakePDF(activeProject, savePfdDialog.FileName);
+                this.IsEnabled = true;
             }
             else
                 return;

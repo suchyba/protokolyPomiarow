@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         mc:Ignorable="d"
-        Title="" Height="171.2" Width="365" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="" Height="171.2" Width="365" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Icon="logo.png">
     <Grid>
         <TextBox Name="InfoTextBox" Height="85" Margin="10,10,10,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" 
                  MaxLines="4" FontFamily="Arial" AcceptsReturn="True" AcceptsTab="True" FontSize="18" VerticalContentAlignment="Center"/>

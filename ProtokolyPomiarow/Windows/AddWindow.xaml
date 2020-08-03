@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.AddWindow"
         mc:Ignorable="d"
-        Title="Dodaj pomiar" Height="360" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize" FontFamily="Arial">
+        Title="Dodaj pomiar" Height="360" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize" FontFamily="Arial"
+        Icon="logo.png">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>

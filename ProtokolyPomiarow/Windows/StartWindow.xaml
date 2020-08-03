@@ -7,7 +7,8 @@
         xmlns:Data="clr-namespace:ProtokolyPomiarow.Data" x:Class="ProtokolyPomiarow.Windows.StartWindow"
         mc:Ignorable="d"
         Title="Otwórz" Height="450" Width="800" Loaded="Window_Loaded" FontFamily="Arial"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        Icon="logo.png">
     <Window.Resources>
         <CollectionViewSource x:Key="projectViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Project}, CreateList=True}"/>
     </Window.Resources>

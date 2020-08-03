@@ -5,11 +5,14 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="Instalator zawiera mechanizmy i dane potrzebne do zainstalowania [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPPRODUCTICON" Value="logo_ico.exe" Type="8"/>
+    <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Bartłomiej Suchecki"/>
     <ROW Property="ProductCode" Value="1033:{817FF64B-5683-4DA5-BEC0-51EB647297AD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Protokoły Pomiarów Światłowodowych"/>
+    <ROW Property="ProductName" Value="Protokoły Pomiarów Sieci Światłowodowych"/>
     <ROW Property="ProductVersion" Value="1.0.1" Type="32"/>
+    <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{1939F0B9-32FC-443D-90F9-CAC6BE15DCD6}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -27,6 +30,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="license_Dir" Directory_Parent="APPDIR" DefaultDir="license"/>
     <ROW Directory="projects_Dir" Directory_Parent="APPDIR" DefaultDir="projects"/>
@@ -34,10 +39,42 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{4AA66B82-C6F8-4C41-ADEF-635B6787E414}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="BouncyCastle.Crypto.dll" ComponentId="{57030E4B-8BF2-4B86-ACFC-E7BB532D2BAD}" Directory_="APPDIR" Attributes="0" KeyPath="BouncyCastle.Crypto.dll"/>
+    <ROW Component="Common.Logging.Core.dll" ComponentId="{7F97BCC0-C1BE-4678-84A3-CCCE1CEFD5AE}" Directory_="APPDIR" Attributes="0" KeyPath="Common.Logging.Core.dll"/>
+    <ROW Component="Common.Logging.dll" ComponentId="{934D0B7D-1C94-492F-8792-DCCDCD713D88}" Directory_="APPDIR" Attributes="0" KeyPath="Common.Logging.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.CSharp.Workspaces.dll" ComponentId="{687A8B4D-C82D-4FBD-9422-2F84213EFD59}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.CSharp.Workspaces.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.CSharp.dll" ComponentId="{838DEB44-7B0E-41E2-8338-B5E88877D441}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.CSharp.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" ComponentId="{512D33A3-B551-4A76-8D61-7A5AB4E72177}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.VisualBasic.dll" ComponentId="{F7697DDC-3CCC-4CB8-B518-4D780DC87C4A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.VisualBasic.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.Workspaces.dll" ComponentId="{91ADC429-C9EA-42F5-ACB8-01346768029D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.Workspaces.dll"/>
+    <ROW Component="Microsoft.CodeAnalysis.dll" ComponentId="{F4E57F52-BC7E-42FB-8652-50EB0F5D7FA7}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.CodeAnalysis.dll"/>
     <ROW Component="ProductInformation" ComponentId="{4E5A8ED7-49C2-40C3-853B-7A96652971CF}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="ProtokolyPomiarow.exe" ComponentId="{567452FA-900A-4731-A964-CF5741B76561}" Directory_="APPDIR" Attributes="0" KeyPath="ProtokolyPomiarow.exe"/>
     <ROW Component="ProtokolyPomiarow.exe.config" ComponentId="{9A7DAB64-B894-41DC-8F94-0AF5F1EA135B}" Directory_="APPDIR" Attributes="0" KeyPath="ProtokolyPomiarow.exe.config" Type="0"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{054D1532-5F5D-455D-90FB-C9FEE9E38AC6}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="System.Buffers.dll" ComponentId="{E9EA45D2-81D4-490B-8842-38A7703E08E1}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll"/>
+    <ROW Component="System.Collections.Immutable.dll" ComponentId="{18912E91-0DD1-4909-928A-E71341EB0DF7}" Directory_="APPDIR" Attributes="0" KeyPath="System.Collections.Immutable.dll"/>
+    <ROW Component="System.Composition.AttributedModel.dll" ComponentId="{CA7D84DB-7A96-4813-8043-9747D25C5B72}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.AttributedModel.dll"/>
+    <ROW Component="System.Composition.Convention.dll" ComponentId="{7252A9C5-515F-45E5-8808-51E95736A554}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.Convention.dll"/>
+    <ROW Component="System.Composition.Hosting.dll" ComponentId="{9E9F2DA6-21E2-42F8-AD8B-8E5CE0F93218}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.Hosting.dll"/>
+    <ROW Component="System.Composition.Runtime.dll" ComponentId="{372CADAC-23B0-4CFC-AEC1-3D180F52E8CD}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.Runtime.dll"/>
+    <ROW Component="System.Composition.TypedParts.dll" ComponentId="{A656E9AE-15DF-4632-9A48-00B1AFC46C64}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.TypedParts.dll"/>
+    <ROW Component="System.Memory.dll" ComponentId="{2B2F9A54-DDFA-4CB6-9318-431B598191EB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{7860F369-11D4-4A18-8C3B-B75659C97693}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Reflection.Metadata.dll" ComponentId="{89B9E58C-FD6D-4525-B3D3-1353A88FFE8D}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reflection.Metadata.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{7BC74042-CC40-410E-A4F3-E5CE5D1EFC63}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Text.Encoding.CodePages.dll" ComponentId="{22F1595D-8460-43C4-8AE5-3D249D66A408}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Encoding.CodePages.dll"/>
+    <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{01A7D48B-3A47-4C97-AD10-824DBEF5C491}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
     <ROW Component="gpl3.0.rtf" ComponentId="{6E15D6AD-15DA-4E87-A5BA-4A5A95BFB7AA}" Directory_="license_Dir" Attributes="0" KeyPath="gpl3.0.rtf" Type="0"/>
+    <ROW Component="itext.barcodes.dll" ComponentId="{03F61372-88CD-429E-949A-821BA08AEDE8}" Directory_="APPDIR" Attributes="0" KeyPath="itext.barcodes.dll"/>
+    <ROW Component="itext.forms.dll" ComponentId="{6DBD866F-0E7E-4E1A-A905-6D7E10FAA3C8}" Directory_="APPDIR" Attributes="0" KeyPath="itext.forms.dll"/>
+    <ROW Component="itext.io.dll" ComponentId="{337EF991-AE0E-4E6A-81FE-3082957A52EF}" Directory_="APPDIR" Attributes="0" KeyPath="itext.io.dll"/>
+    <ROW Component="itext.kernel.dll" ComponentId="{02631741-3685-49E9-A8A6-04AA962A4BD4}" Directory_="APPDIR" Attributes="0" KeyPath="itext.kernel.dll"/>
+    <ROW Component="itext.layout.dll" ComponentId="{575ADC9A-330F-4781-BE86-B3E6CEEF0F7C}" Directory_="APPDIR" Attributes="0" KeyPath="itext.layout.dll"/>
+    <ROW Component="itext.pdfa.dll" ComponentId="{EDD347A9-5AFB-4014-B111-9844B377F1F2}" Directory_="APPDIR" Attributes="0" KeyPath="itext.pdfa.dll"/>
+    <ROW Component="itext.sign.dll" ComponentId="{997D04CD-AABD-42C5-9583-90B3F6C6C345}" Directory_="APPDIR" Attributes="0" KeyPath="itext.sign.dll"/>
+    <ROW Component="itext.styledxmlparser.dll" ComponentId="{68C5A503-1C91-4BC2-8E30-CA35D9B71CE6}" Directory_="APPDIR" Attributes="0" KeyPath="itext.styledxmlparser.dll"/>
+    <ROW Component="itext.svg.dll" ComponentId="{8B505CE2-E216-4631-8F16-9D773B21BFF6}" Directory_="APPDIR" Attributes="0" KeyPath="itext.svg.dll"/>
     <ROW Component="projects" ComponentId="{45904364-21AA-4E2A-A50A-2BB37CFFBF70}" Directory_="projects_Dir" Attributes="0"/>
     <ROW Component="settings" ComponentId="{5557141A-BD29-4124-9272-2A7DDAD68D39}" Directory_="settings_Dir" Attributes="0"/>
   </COMPONENT>
@@ -49,6 +86,71 @@
     <ROW File="gpl3.0.rtf" Component_="gpl3.0.rtf" FileName="GPL-30~1.RTF|gpl-3.0.rtf" Attributes="0" SourcePath="..\ProtokolyPomiarow\license\gpl-3.0.rtf" SelfReg="false"/>
     <ROW File="ProtokolyPomiarow.exe" Component_="ProtokolyPomiarow.exe" FileName="PROTOK~1.EXE|ProtokolyPomiarow.exe" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\ProtokolyPomiarow.exe" SelfReg="false" DigSign="true"/>
     <ROW File="ProtokolyPomiarow.exe.config" Component_="ProtokolyPomiarow.exe.config" FileName="PROTOK~1.CON|ProtokolyPomiarow.exe.config" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\ProtokolyPomiarow.exe.config" SelfReg="false"/>
+    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\BouncyCastle.Crypto.dll" SelfReg="false"/>
+    <ROW File="BouncyCastle.Crypto.xml" Component_="ProtokolyPomiarow.exe.config" FileName="BOUNCY~1.XML|BouncyCastle.Crypto.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\BouncyCastle.Crypto.xml" SelfReg="false"/>
+    <ROW File="Common.Logging.Core.dll" Component_="Common.Logging.Core.dll" FileName="COMMON~1.DLL|Common.Logging.Core.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.Core.dll" SelfReg="false"/>
+    <ROW File="Common.Logging.Core.pdb" Component_="Common.Logging.Core.dll" FileName="COMMON~1.PDB|Common.Logging.Core.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.Core.pdb" SelfReg="false"/>
+    <ROW File="Common.Logging.Core.xml" Component_="ProtokolyPomiarow.exe.config" FileName="COMMON~1.XML|Common.Logging.Core.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.Core.xml" SelfReg="false"/>
+    <ROW File="Common.Logging.dll" Component_="Common.Logging.dll" FileName="COMMON~2.DLL|Common.Logging.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.dll" SelfReg="false"/>
+    <ROW File="Common.Logging.pdb" Component_="Common.Logging.dll" FileName="COMMON~2.PDB|Common.Logging.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.pdb" SelfReg="false"/>
+    <ROW File="Common.Logging.xml" Component_="ProtokolyPomiarow.exe.config" FileName="COMMON~2.XML|Common.Logging.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Common.Logging.xml" SelfReg="false"/>
+    <ROW File="itext.barcodes.dll" Component_="itext.barcodes.dll" FileName="ITEXTB~1.DLL|itext.barcodes.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.barcodes.dll" SelfReg="false"/>
+    <ROW File="itext.barcodes.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTB~1.XML|itext.barcodes.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.barcodes.xml" SelfReg="false"/>
+    <ROW File="itext.forms.dll" Component_="itext.forms.dll" FileName="ITEXTF~1.DLL|itext.forms.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.forms.dll" SelfReg="false"/>
+    <ROW File="itext.forms.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTF~1.XML|itext.forms.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.forms.xml" SelfReg="false"/>
+    <ROW File="itext.io.dll" Component_="itext.io.dll" FileName="ITEXTI~1.DLL|itext.io.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.io.dll" SelfReg="false"/>
+    <ROW File="itext.io.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTI~1.XML|itext.io.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.io.xml" SelfReg="false"/>
+    <ROW File="itext.kernel.dll" Component_="itext.kernel.dll" FileName="ITEXTK~1.DLL|itext.kernel.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.kernel.dll" SelfReg="false"/>
+    <ROW File="itext.kernel.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTK~1.XML|itext.kernel.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.kernel.xml" SelfReg="false"/>
+    <ROW File="itext.layout.dll" Component_="itext.layout.dll" FileName="ITEXTL~1.DLL|itext.layout.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.layout.dll" SelfReg="false"/>
+    <ROW File="itext.layout.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTL~1.XML|itext.layout.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.layout.xml" SelfReg="false"/>
+    <ROW File="itext.pdfa.dll" Component_="itext.pdfa.dll" FileName="ITEXTP~1.DLL|itext.pdfa.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.pdfa.dll" SelfReg="false"/>
+    <ROW File="itext.pdfa.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTP~1.XML|itext.pdfa.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.pdfa.xml" SelfReg="false"/>
+    <ROW File="itext.sign.dll" Component_="itext.sign.dll" FileName="ITEXTS~1.DLL|itext.sign.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.sign.dll" SelfReg="false"/>
+    <ROW File="itext.sign.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTS~1.XML|itext.sign.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.sign.xml" SelfReg="false"/>
+    <ROW File="itext.styledxmlparser.dll" Component_="itext.styledxmlparser.dll" FileName="ITEXTS~2.DLL|itext.styledxmlparser.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.styledxmlparser.dll" SelfReg="false"/>
+    <ROW File="itext.styledxmlparser.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTS~2.XML|itext.styledxmlparser.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.styledxmlparser.xml" SelfReg="false"/>
+    <ROW File="itext.svg.dll" Component_="itext.svg.dll" FileName="ITEXTS~3.DLL|itext.svg.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.svg.dll" SelfReg="false"/>
+    <ROW File="itext.svg.xml" Component_="ProtokolyPomiarow.exe.config" FileName="ITEXTS~3.XML|itext.svg.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\itext.svg.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.dll" Component_="Microsoft.CodeAnalysis.CSharp.dll" FileName="MICROS~1.DLL|Microsoft.CodeAnalysis.CSharp.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.pdb" Component_="Microsoft.CodeAnalysis.CSharp.dll" FileName="MICROS~1.PDB|Microsoft.CodeAnalysis.CSharp.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.Workspaces.dll" Component_="Microsoft.CodeAnalysis.CSharp.Workspaces.dll" FileName="MICROS~2.DLL|Microsoft.CodeAnalysis.CSharp.Workspaces.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.Workspaces.pdb" Component_="Microsoft.CodeAnalysis.CSharp.Workspaces.dll" FileName="MICROS~2.PDB|Microsoft.CodeAnalysis.CSharp.Workspaces.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.Workspaces.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.Workspaces.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~1.XML|Microsoft.CodeAnalysis.CSharp.Workspaces.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.Workspaces.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.CSharp.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~2.XML|Microsoft.CodeAnalysis.CSharp.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.CSharp.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.dll" Component_="Microsoft.CodeAnalysis.dll" FileName="MICROS~3.DLL|Microsoft.CodeAnalysis.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.pdb" Component_="Microsoft.CodeAnalysis.dll" FileName="MICROS~3.PDB|Microsoft.CodeAnalysis.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.dll" Component_="Microsoft.CodeAnalysis.VisualBasic.dll" FileName="MICROS~4.DLL|Microsoft.CodeAnalysis.VisualBasic.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.pdb" Component_="Microsoft.CodeAnalysis.VisualBasic.dll" FileName="MICROS~4.PDB|Microsoft.CodeAnalysis.VisualBasic.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" Component_="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" FileName="MICROS~5.DLL|Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.Workspaces.pdb" Component_="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" FileName="MICROS~5.PDB|Microsoft.CodeAnalysis.VisualBasic.Workspaces.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.Workspaces.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.Workspaces.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~3.XML|Microsoft.CodeAnalysis.VisualBasic.Workspaces.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.Workspaces.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.VisualBasic.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~4.XML|Microsoft.CodeAnalysis.VisualBasic.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.VisualBasic.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.Workspaces.dll" Component_="Microsoft.CodeAnalysis.Workspaces.dll" FileName="MICROS~6.DLL|Microsoft.CodeAnalysis.Workspaces.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.Workspaces.dll" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.Workspaces.pdb" Component_="Microsoft.CodeAnalysis.Workspaces.dll" FileName="MICROS~6.PDB|Microsoft.CodeAnalysis.Workspaces.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.Workspaces.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.Workspaces.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~5.XML|Microsoft.CodeAnalysis.Workspaces.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.Workspaces.xml" SelfReg="false"/>
+    <ROW File="Microsoft.CodeAnalysis.xml" Component_="ProtokolyPomiarow.exe.config" FileName="MICROS~6.XML|Microsoft.CodeAnalysis.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\Microsoft.CodeAnalysis.xml" SelfReg="false"/>
+    <ROW File="ProtokolyPomiarow.pdb" Component_="ProtokolyPomiarow.exe" FileName="PROTOK~1.PDB|ProtokolyPomiarow.pdb" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\ProtokolyPomiarow.pdb" SelfReg="false"/>
+    <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Buffers.dll" SelfReg="false"/>
+    <ROW File="System.Buffers.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~1.XML|System.Buffers.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Buffers.xml" SelfReg="false"/>
+    <ROW File="System.Collections.Immutable.dll" Component_="System.Collections.Immutable.dll" FileName="SYSTEM~2.DLL|System.Collections.Immutable.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Collections.Immutable.dll" SelfReg="false"/>
+    <ROW File="System.Collections.Immutable.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~2.XML|System.Collections.Immutable.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Collections.Immutable.xml" SelfReg="false"/>
+    <ROW File="System.Composition.AttributedModel.dll" Component_="System.Composition.AttributedModel.dll" FileName="SYSTEM~3.DLL|System.Composition.AttributedModel.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Composition.AttributedModel.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Convention.dll" Component_="System.Composition.Convention.dll" FileName="SYSTEM~4.DLL|System.Composition.Convention.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Composition.Convention.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Hosting.dll" Component_="System.Composition.Hosting.dll" FileName="SYSTEM~5.DLL|System.Composition.Hosting.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Composition.Hosting.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Runtime.dll" Component_="System.Composition.Runtime.dll" FileName="SYSTEM~6.DLL|System.Composition.Runtime.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Composition.Runtime.dll" SelfReg="false"/>
+    <ROW File="System.Composition.TypedParts.dll" Component_="System.Composition.TypedParts.dll" FileName="SYSTEM~7.DLL|System.Composition.TypedParts.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Composition.TypedParts.dll" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTEM~8.DLL|System.Memory.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Memory.dll" SelfReg="false"/>
+    <ROW File="System.Memory.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~3.XML|System.Memory.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Memory.xml" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTEM~9.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Numerics.Vectors.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~4.XML|System.Numerics.Vectors.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Numerics.Vectors.xml" SelfReg="false"/>
+    <ROW File="System.Reflection.Metadata.dll" Component_="System.Reflection.Metadata.dll" FileName="SYSTE~10.DLL|System.Reflection.Metadata.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Reflection.Metadata.dll" SelfReg="false"/>
+    <ROW File="System.Reflection.Metadata.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~5.XML|System.Reflection.Metadata.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Reflection.Metadata.xml" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTE~11.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~6.XML|System.Runtime.CompilerServices.Unsafe.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" SelfReg="false"/>
+    <ROW File="System.Text.Encoding.CodePages.dll" Component_="System.Text.Encoding.CodePages.dll" FileName="SYSTE~12.DLL|System.Text.Encoding.CodePages.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Text.Encoding.CodePages.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.dll" Component_="System.Threading.Tasks.Extensions.dll" FileName="SYSTE~13.DLL|System.Threading.Tasks.Extensions.dll" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Threading.Tasks.Extensions.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.xml" Component_="ProtokolyPomiarow.exe.config" FileName="SYSTEM~7.XML|System.Threading.Tasks.Extensions.xml" Attributes="0" SourcePath="..\ProtokolyPomiarow\bin\Release\System.Threading.Tasks.Extensions.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -62,7 +164,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
-    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="InstallTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\InstallTypeDlg.aip"/>
     <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\LicenseAgreementDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
@@ -76,20 +178,19 @@
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
-    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="20" Y="60" Width="330" Height="120" Attributes="7" Text="C:\Users\suchy\OneDrive\Desktop\gpl-3.0.rtf" Order="400" TextLocId="Control.Text.LicenseAgreementDlg#AgreementText" MsiKey="LicenseAgreementDlg#AgreementText"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="20" Y="60" Width="330" Height="120" Attributes="7" Text="..\ProtokolyPomiarow\license\gpl-3.0.rtf" Order="400" TextLocId="Control.Text.LicenseAgreementDlg#AgreementText_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
-    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="InstallTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
-    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="201"/>
     <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
     <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
@@ -104,24 +205,37 @@
     <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
-    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="InstallTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="InstallTypeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="101"/>
+    <ROW Dialog_="InstallTypeDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="settings_Dir" Component_="settings" ManualDelete="false"/>
     <ROW Directory_="projects_Dir" Component_="projects" ManualDelete="false"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
+    <ROW Action="AI_AuthorSinglePackage" Type="1" Source="aicustact.dll" Target="AI_AuthorSinglePackage" WithoutSeq="true"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#ProtokolyPomiarow.exe]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
+    <ROW Action="AI_PinToStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="PinToStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_PinToTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="PinToTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_PrepareShortcutFlags" Type="1" Source="ShortcutFlags.dll" Target="PrepareActionData"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -134,6 +248,41 @@
     <ROW Feature_="MainFeature" Component_="settings"/>
     <ROW Feature_="MainFeature" Component_="gpl3.0.rtf"/>
     <ROW Feature_="MainFeature" Component_="ProtokolyPomiarow.exe.config"/>
+    <ROW Feature_="MainFeature" Component_="BouncyCastle.Crypto.dll"/>
+    <ROW Feature_="MainFeature" Component_="Common.Logging.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="Common.Logging.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.barcodes.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.forms.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.io.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.kernel.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.layout.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.pdfa.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.sign.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.styledxmlparser.dll"/>
+    <ROW Feature_="MainFeature" Component_="itext.svg.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.CSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.CSharp.Workspaces.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.VisualBasic.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.CodeAnalysis.Workspaces.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Buffers.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Collections.Immutable.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.AttributedModel.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Convention.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Hosting.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Runtime.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.TypedParts.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Memory.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Vectors.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Reflection.Metadata.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Text.Encoding.CodePages.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="logo_ico.exe" SourcePath="..\ProtokolyPomiarow\Resources\logo_ico.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -142,6 +291,9 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_PrepareShortcutFlags" Condition="(VersionNT &gt; 501) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="4501"/>
+    <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
+    <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -160,6 +312,10 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="ProtokolyPomiarow" Directory_="SHORTCUTDIR" Name="PROTOK~1|ProtokolyPomiarow" Component_="ProtokolyPomiarow.exe" Target="[#ProtokolyPomiarow.exe]" Hotkey="0" Icon_="logo_ico.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
+    <ROW Shortcut="ProtokolyPomiarow_1" Directory_="DesktopFolder" Name="PROTOK~1|ProtokolyPomiarow" Component_="ProtokolyPomiarow.exe" Target="[#ProtokolyPomiarow.exe]" Hotkey="0" Icon_="logo_ico.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

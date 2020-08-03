@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.EditWindow"
         mc:Ignorable="d"
-        Title="Edytuj pomiar" Height="360" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="Edytuj pomiar" Height="360" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize"
+        Icon="logo.png">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProtokolyPomiarow.Windows"
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.EditDefaultsWindow"
         mc:Ignorable="d"
-        Title="Ustawienia" Height="411" Width="785" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="Ustawienia" Height="411" Width="785" Loaded="Window_Loaded" ResizeMode="NoResize"
+        Icon="logo.png">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>

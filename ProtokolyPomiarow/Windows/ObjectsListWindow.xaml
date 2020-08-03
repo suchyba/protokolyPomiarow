@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Lista elementów" Height="400" Width="321.6"
         ResizeMode="NoResize"
-        Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Closing="Window_Closing" WindowStartupLocation="CenterScreen"
+        Icon="logo.png">
     <Grid>
         <ListBox x:Name="ListBox" Height="314" Margin="10,10,10.2,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>

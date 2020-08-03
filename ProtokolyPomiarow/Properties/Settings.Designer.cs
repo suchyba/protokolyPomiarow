@@ -25,7 +25,7 @@ namespace ProtokolyPomiarow.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("settings/workspace.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("settings\\workspace.xml")]
         public string workspaceLocation {
             get {
                 return ((string)(this["workspaceLocation"]));

@@ -17,14 +17,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
+using TextAlignment = iText.Layout.Properties.TextAlignment;
+using VerticalAlignment = iText.Layout.Properties.VerticalAlignment;
 
 namespace ProtokolyPomiarow.PDF
 {
     public static class PdfDesigner
     {
-        public static void MakePDF(Project project, string pdf_location)
+        public static void MakePDF(Project project, string pdfLocation)
         {
-            using (var writer = new PdfWriter(File.Open(pdf_location, FileMode.OpenOrCreate)))
+            if(project == null)
+            {
+                MessageBox.Show("Obiekt projektu jest wartością NULL.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if(string.IsNullOrEmpty(pdfLocation))
+            {
+                MessageBox.Show("Ciąg pliku wyjściowego jest błędny", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            MessageBox.Show($"Tworzę plik PDF o lokalizacji:\n{pdfLocation}", "Informacja", MessageBoxButton.OK, MessageBoxImage.Error);
+            using (var writer = new PdfWriter(File.Open(pdfLocation, FileMode.OpenOrCreate)))
             {
                 using (var pdf = new PdfDocument(writer))
                 {
@@ -136,7 +151,7 @@ namespace ProtokolyPomiarow.PDF
                     }
                 }
             }
-
+            MessageBox.Show( "Plik został utworzony!", "Zakończone", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private class HeaderHendler : IEventHandler
         {

@@ -155,7 +155,7 @@ namespace ProtokolyPomiarow
             string loc = null;
             if (activeProject.Localization == null)
             {
-                loc = System.AppDomain.CurrentDomain.BaseDirectory + "\\projects\\" + activeProject.ProtocolNumber.Replace('/', '_') + ".prp";
+                loc = System.AppDomain.CurrentDomain.BaseDirectory + @"projects\" + activeProject.ProtocolNumber.Replace('/', '_') + ".prp";
                 activeProject.Localization = loc;
                 ++activeWorkspace.LastProtocolNumber;
                 activeWorkspace.Projects.Add(activeProject);
@@ -425,9 +425,9 @@ namespace ProtokolyPomiarow
                         {
                             activeWorkspace.People.Add(activeProject.VeryfingPerson);
                         }
-                        if (activeProject.Opinion != null && activeWorkspace.People.Find(s => s == activeProject.Opinion) == null)
+                        if (activeProject.Opinion != null && activeWorkspace.Opinions.Find(s => s == activeProject.Opinion) == null)
                         {
-                            activeWorkspace.People.Add(activeProject.Opinion);
+                            activeWorkspace.Opinions.Add(activeProject.Opinion);
                         }
 
                         CustomerInfoBlock.Text = activeProject.CustomerInfo;

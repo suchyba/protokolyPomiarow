@@ -9,9 +9,16 @@
         ResizeMode="NoResize"
         Icon="logo.png">
     <Grid Margin="0,0,0,1">
-        <TextBox Name="LabelTextBox" HorizontalAlignment="Left" Height="25" Margin="20,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" VerticalContentAlignment="Center"/>
-        <Button Name="AddLabelButton" Content="Dodaj" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Width="80" Click="AddLabelButton_Click" Height="25" IsDefault="True"/>
-        <Label Content="Tytuł" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="1" Grid.Column="0" Name="LabelTextBox" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="5" Margin="20, 5"/>
+        <Button Grid.Row="1" Grid.Column="1" Name="AddLabelButton" Content="Dodaj" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="AddLabelButton_Click" Padding="20, 5" Margin="20, 5" IsDefault="True"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Tytuł" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20, 5"/>
     </Grid>
 </Window>

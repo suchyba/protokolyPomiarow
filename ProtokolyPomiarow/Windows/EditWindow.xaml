@@ -7,38 +7,69 @@
         xmlns:MesurementsClass="clr-namespace:ProtokolyPomiarow.MesurementsClass" x:Class="ProtokolyPomiarow.Windows.EditWindow"
         mc:Ignorable="d"
         Title="Edytuj pomiar" Height="360" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize"
-        Icon="logo.png">
+        Icon="logo.png" FontFamily="Arial">
     <Window.Resources>
         <CollectionViewSource x:Key="cableTypeViewSource" d:DesignSource="{d:DesignInstance {x:Type MesurementsClass:CableType}, CreateList=True}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource cableTypeViewSource}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="CommitButt" Content="Edytuj" HorizontalAlignment="Left" Margin="242,280,0,0" VerticalAlignment="Top" Width="80" Click="CommitButt_Click" TabIndex="9" IsDefault="True" FontFamily="Arial" Grid.Column="1" Height="20"/>
-        <Button x:Name="CancelButt" Content="Anuluj" HorizontalAlignment="Left" Margin="82,280,0,0" VerticalAlignment="Top" Width="80" IsCancel="True" FontFamily="Arial" Grid.Column="1" Height="20"/>
-        <TextBox x:Name="SourceTextBox" HorizontalAlignment="Left" Height="23" Margin="150,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="0" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="DestinationTextBox" HorizontalAlignment="Left" Height="23" Margin="150,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="1" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="CabletypeCombo" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" Width="210" SelectedValuePath="Attenuation" TabIndex="3" FontFamily="Arial" Height="23" VerticalContentAlignment="Center" ItemsSource="{Binding}" DisplayMemberPath="Name"/>
-        <TextBox x:Name="WeldCountTextBox" HorizontalAlignment="Left" Height="23" Margin="150,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="7" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="MesurementTextBox" HorizontalAlignment="Left" Height="23" Margin="165,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="8" FontFamily="Arial" VerticalContentAlignment="Center" Grid.Column="1"/>
-        <TextBox x:Name="WireTextBox" HorizontalAlignment="Left" Height="23" Margin="150,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="4" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="DistanceTextBox" HorizontalAlignment="Left" Height="23" Margin="150,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="5" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="PigCountTextBox" HorizontalAlignment="Left" Height="23" Margin="150,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" TabIndex="6" FontFamily="Arial" VerticalContentAlignment="Center"/>
-        <Label Content="Żródło" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="44"/>
-        <Label Content="Cel" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="28"/>
-        <Label Content="Typ przewodu" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="85"/>
-        <Label Content="Numer włókna" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="87"/>
-        <Label Content="Długość bierząca [km]" HorizontalAlignment="Left" Margin="20,180,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="128"/>
-        <Label Content="Ilość złączy" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="71"/>
-        <Label Content="Ilość spawów" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="24" Width="81"/>
-        <Label Content="Wartość zmierzona [dB]" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" FontFamily="Arial" Grid.Column="1" Height="24" Width="137"/>
-        <GroupBox Header="Manualne ustawianie wyniku pomiaru" HorizontalAlignment="Left" Height="88" Margin="20,152,0,0" VerticalAlignment="Top" Width="357" Grid.Column="1">
-            <Grid HorizontalAlignment="Left" Height="71" Margin="0,0,-2,-4" VerticalAlignment="Top" Width="342">
-                <CheckBox Name="ManuallyResultCheckBox" Content="Ustaw manualnie wynik pomiaru" HorizontalAlignment="Left" Margin="10,10,0,0" TabIndex="8" VerticalAlignment="Top" Checked="ManuallyResultCheckBoxCheckChange" Unchecked="ManuallyResultCheckBoxCheckChange"/>
-                <Label Content="Wynik pomiaru" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
-                <ComboBox Name="ResultComboBox"  IsEnabled="False" HorizontalAlignment="Left" Margin="121,38,0,0" VerticalAlignment="Top" Width="176" TabIndex="9"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Żródło" HorizontalAlignment="Left" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Cel" HorizontalAlignment="Left" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Typ przewodu" HorizontalAlignment="Left" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Numer włókna" HorizontalAlignment="Left" Grid.Row="3" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Długość bierząca [km]" HorizontalAlignment="Left" Grid.Row="4" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Ilość złączy" HorizontalAlignment="Left" Grid.Row="5" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Ilość spawów" HorizontalAlignment="Left" Grid.Row="6" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="Wartość zmierzona [dB]" HorizontalAlignment="Left" Grid.Row="7" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBox x:Name="SourceTextBox" TabIndex="0" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="DestinationTextBox" TabIndex="1" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <ComboBox x:Name="CabletypeCombo" SelectedValuePath="Attenuation" TabIndex="3" ItemsSource="{Binding}" DisplayMemberPath="Name" Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="WeldCountTextBox" TabIndex="7" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="MesurementTextBox" TabIndex="8" Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="WireTextBox" TabIndex="4" Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="DistanceTextBox" TabIndex="5" Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="PigCountTextBox" TabIndex="6" Grid.Row="7" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+        </Grid>
+
+        <Button x:Name="CommitButt" Content="Zatwierdź" Click="CommitButt_Click" TabIndex="9" IsDefault="True" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Padding="20, 5" Margin="10, 5" VerticalAlignment="Bottom"/>
+        <Button x:Name="CancelButt" Content="Anuluj" IsCancel="True" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Padding="20, 5" Margin="10, 5" VerticalAlignment="Bottom"/>
+        <GroupBox Header="Manualne ustawianie wyniku pomiaru" Grid.Column="2" Grid.Row="0" Margin="10, 5" Height="auto" Padding="5" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <CheckBox Name="ManuallyResultCheckBox" Grid.ColumnSpan="2" Content="Ustaw manualnie wynik pomiaru" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="8" Checked="ManuallyResultCheckBoxCheckChange" Unchecked="ManuallyResultCheckBoxCheckChange" Margin="5"/>
+                <Label Content="Wynik pomiaru" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+                <ComboBox Name="ResultComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" TabIndex="9" Margin="5" VerticalAlignment="Center"/>
             </Grid>
         </GroupBox>
     </Grid>

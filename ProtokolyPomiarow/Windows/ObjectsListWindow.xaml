@@ -10,10 +10,18 @@
         Closing="Window_Closing" WindowStartupLocation="CenterScreen"
         Icon="logo.png">
     <Grid>
-        <ListBox x:Name="ListBox" Height="314" Margin="10,10,10.2,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
-        <Button x:Name="EditButton" Content="Edytuj/Usuń" Margin="110,329,110.2,0" VerticalAlignment="Top" Click="EditButton_Click" IsEnabled="False"/>
-        <Button x:Name="SelectButton" Content="Wybierz" Margin="230,329,10.2,0" VerticalAlignment="Top" Click="SelectButton_Click" IsDefault="True" IsEnabled="False"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="ListBox" Grid.ColumnSpan="3" SelectionChanged="ListBox_SelectionChanged" Margin="5"/>
+        <Button x:Name="AddButton" Grid.Column="2" Grid.Row="1" Content="Dodaj" Click="AddButton_Click" Padding="10, 5" Margin="5" VerticalAlignment="Center"/>
+        <Button x:Name="EditButton" Grid.Column="1" Grid.Row="1" Content="Edytuj/Usuń" Click="EditButton_Click" IsEnabled="False" Padding="10, 5" Margin="5"/>
+        <Button x:Name="SelectButton" Grid.Column="0" Grid.Row="1" Content="Wybierz" Click="SelectButton_Click" IsDefault="True" IsEnabled="False" Padding="20, 5" Margin="5"/>
     </Grid>
 </Window>

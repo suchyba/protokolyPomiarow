@@ -13,11 +13,21 @@
         <CollectionViewSource x:Key="projectViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Project}, CreateList=True}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource projectViewSource}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-        <Button x:Name="NewButton" Content="Nowy projekt" HorizontalAlignment="Left" Margin="683,31,0,0" VerticalAlignment="Top" Width="82" Height="32" Click="NewButton_Click"/>
-        <Button x:Name="OpenButton" Content="Otwórz" HorizontalAlignment="Left" Margin="683,80,0,0" VerticalAlignment="Top" Width="82" Height="32" Click="OpenButton_Click" IsEnabled="False" IsDefault="True"/>
-        <Button x:Name="DelButton" Content="Usuń" HorizontalAlignment="Left" Margin="683,128,0,0" VerticalAlignment="Top" Width="82" Height="32" IsEnabled="False" Click="DelButton_Click"/>
-        <Button x:Name="ImportButton" Content="Importuj" HorizontalAlignment="Left" Margin="683,360,0,0" VerticalAlignment="Top" Width="82" Height="32" IsEnabled="True" Click="ImportButton_Click"/>
-        <DataGrid x:Name="ProjectsDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="411" Margin="0,0,0,0" Width="659" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionChanged="ProjectsDataGrid_SelectionChanged" MinColumnWidth="0" CanUserResizeRows="False" RowHeaderWidth="0" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrush}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button x:Name="NewButton" Content="Nowy projekt" Click="NewButton_Click" Padding="20, 5" Margin="20, 10"/>
+            <Button x:Name="OpenButton" Content="Otwórz" Click="OpenButton_Click" IsEnabled="False" IsDefault="True" Padding="20, 5" Margin="20, 10"/>
+            <Button x:Name="DelButton" Content="Usuń" IsEnabled="False" Click="DelButton_Click" Padding="20, 5" Margin="20, 10"/>
+        </StackPanel>
+        <Button x:Name="ImportButton" Grid.Row="1" Grid.Column="1" Content="Importuj" IsEnabled="True" Click="ImportButton_Click" Padding="20, 5" Margin="20, 10"/>
+        <DataGrid x:Name="ProjectsDataGrid" Grid.RowSpan="2" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionChanged="ProjectsDataGrid_SelectionChanged" CanUserResizeRows="False" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrush}}">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="FontWeight"

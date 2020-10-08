@@ -35,7 +35,7 @@ namespace ProtokolyPomiarow.Windows
             results.Add("Nie");
 
             ResultComboBox.ItemsSource = results;
-            SourceTexBox.Focus();
+            SourceTextBox.Focus();
         }
 
         private void CommitButt_Click(object sender, RoutedEventArgs e)
@@ -43,9 +43,9 @@ namespace ProtokolyPomiarow.Windows
             int wire = -1, pigCount = -1, weldCount = -1;
             double distance = -1d, real = -1d;
 
-            WireTexBox.BorderBrush = SystemColors.ActiveBorderBrush;
-            PigCounTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
-            WeldCountextBox.BorderBrush = SystemColors.ActiveBorderBrush;
+            WireTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
+            PigCountTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
+            WeldCountTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
             DistanceTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
             MesurementTextBox.BorderBrush = SystemColors.ActiveBorderBrush;
             ResultComboBox.BorderBrush = SystemColors.ActiveBorderBrush;
@@ -54,29 +54,29 @@ namespace ProtokolyPomiarow.Windows
 
             try
             {
-                wire = int.Parse(WireTexBox.Text, System.Globalization.NumberStyles.Integer);
+                wire = int.Parse(WireTextBox.Text, System.Globalization.NumberStyles.Integer);
             }
             catch (System.FormatException)
             {
-                WireTexBox.BorderBrush = Brushes.Red;
+                WireTextBox.BorderBrush = Brushes.Red;
                 error = true;
             }
             try
             {
-                pigCount = int.Parse(PigCounTextBox.Text, System.Globalization.NumberStyles.Integer);
+                pigCount = int.Parse(PigCountTextBox.Text, System.Globalization.NumberStyles.Integer);
             }
             catch (System.FormatException)
             {
-                PigCounTextBox.BorderBrush = Brushes.Red;
+                PigCountTextBox.BorderBrush = Brushes.Red;
                 error = true;
             }
             try
             {
-                weldCount = int.Parse(WeldCountextBox.Text, System.Globalization.NumberStyles.Integer);
+                weldCount = int.Parse(WeldCountTextBox.Text, System.Globalization.NumberStyles.Integer);
             }
             catch (System.FormatException)
             {
-                WeldCountextBox.BorderBrush = Brushes.Red;
+                WeldCountTextBox.BorderBrush = Brushes.Red;
                 error = true;
             }
             try
@@ -115,12 +115,12 @@ namespace ProtokolyPomiarow.Windows
             if(ManuallyResultCheckBox.IsChecked == true)
             {
                 if((string)ResultComboBox.SelectedItem == "Tak")
-                    MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, true);
+                    MainWindow.activeProject.AddMesurement(SourceTextBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, true);
                 else
-                    MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, false);
+                    MainWindow.activeProject.AddMesurement(SourceTextBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real, false);
             }
             else
-                MainWindow.activeProject.AddMesurement(SourceTexBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real);
+                MainWindow.activeProject.AddMesurement(SourceTextBox.Text, DestinationTextBox.Text, CabletypeCombo.SelectedItem as CableType, wire, distance, pigCount, weldCount, real);
 
             this.Close();
         }

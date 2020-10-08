@@ -10,8 +10,11 @@
         WindowStartupLocation="CenterScreen" WindowState="Normal"
         Icon="logo.png">
     <Grid>
-        <ProgressBar x:Name="CreatingProgressBar" HorizontalAlignment="Left" Height="20" Margin="10,55,0,0" VerticalAlignment="Top" Width="420" Minimum="0" Maximum="100" Value="0"/>
-        <Label Content="Plik PDF jest w trakcie tworzenia..." HorizontalAlignment="Left" Margin="125,19,0,0" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Plik PDF jest w trakcie tworzenia..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ProgressBar x:Name="CreatingProgressBar" Minimum="0" Maximum="100" Value="0" Grid.Row="1" Margin="10"/>
     </Grid>
 </Window>

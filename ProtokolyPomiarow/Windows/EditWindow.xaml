@@ -47,11 +47,11 @@
             <TextBox x:Name="SourceTextBox" TabIndex="0" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
             <TextBox x:Name="DestinationTextBox" TabIndex="1" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
             <ComboBox x:Name="CabletypeCombo" SelectedValuePath="Attenuation" TabIndex="3" ItemsSource="{Binding}" DisplayMemberPath="Name" Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
-            <TextBox x:Name="WeldCountTextBox" TabIndex="7" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
-            <TextBox x:Name="MesurementTextBox" TabIndex="8" Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
-            <TextBox x:Name="WireTextBox" TabIndex="4" Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
-            <TextBox x:Name="DistanceTextBox" TabIndex="5" Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
-            <TextBox x:Name="PigCountTextBox" TabIndex="6" Grid.Row="7" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="WeldCountTextBox" TabIndex="7" Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Top" Padding="5"/>
+            <TextBox x:Name="MesurementTextBox" TabIndex="8" Grid.Row="7" Grid.Column="1" Margin="5" VerticalAlignment="Top" Padding="5"/>
+            <TextBox x:Name="WireTextBox" TabIndex="4" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Top" Padding="5"/>
+            <TextBox x:Name="DistanceTextBox" TabIndex="5" Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Top" Padding="5"/>
+            <TextBox x:Name="PigCountTextBox" TabIndex="6" Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" Padding="5"/>
         </Grid>
 
         <Button x:Name="CommitButt" Content="Zatwierdź" Click="CommitButt_Click" TabIndex="9" IsDefault="True" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Padding="20, 5" Margin="10, 5" VerticalAlignment="Bottom"/>

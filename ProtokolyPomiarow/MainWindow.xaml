@@ -17,104 +17,173 @@
         <local:BoolConverter x:Key="BoolConv"/>
     </Window.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-        <Menu Height="20" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" >
-            <MenuItem Header="Plik" Height="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" >
+            <MenuItem Header="Plik">
                 <MenuItem x:Name="NewFileMenuButt" Header="Nowy (Ctrl + N)" Click="NewProject" BorderBrush="{DynamicResource {x:Static SystemColors.InactiveBorderBrush}}"/>
                 <MenuItem x:Name="SaveMenuButt" Header="Zapisz (Ctrl + S)" Click="SaveAction"/>
                 <MenuItem x:Name="SaveAsMenuButt" Header="Zapisz jako (Ctrl + Shift + S)" Click="SaveAsAction"/>
                 <MenuItem x:Name="ExportMenuButt" Header="Eksportuj (PDF)" Click="ExportMenuButt_Click"/>
                 <MenuItem x:Name="CloseProjectMenuButt"  Header="Zamknij projekt" Click="CloseProject"/>
             </MenuItem>
-            <MenuItem Header="Opcje" Height="20">
+            <MenuItem Header="Opcje">
                 <MenuItem x:Name="DefValMenuButt" Header="Ustawienia" Click="DefValMenuButt_Click"/>
             </MenuItem>
         </Menu>
-        <TabControl x:Name="MainTabControl" Margin="0,20,0,0.4" ButtonBase.Click="SthChangedInProject">
+        <TabControl Grid.Row="1" x:Name="MainTabControl" ButtonBase.Click="SthChangedInProject">
             <TabItem Header="Nagłówek" x:Name="HeaderTabIndex">
-                <Grid Background="#FFE5E5E5" Height="633" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1536">
-                    <GroupBox Header="Informacje wstępne" HorizontalAlignment="Left" Height="156" Margin="10,10,0,0" VerticalAlignment="Top" Width="1510" BorderThickness="1" BorderBrush="White" >
-                        <Grid Margin="10,10,10,2.8">
-                            <Label Content="Protokół nr " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <TextBox x:Name="ProtocolNumberTextBox" HorizontalAlignment="Left" Height="30" Margin="211,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Arial" VerticalContentAlignment="Center"/>
-                            <Label Content="Data dokumentu" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
-                            <DatePicker x:Name="DocumentDatePicker" HorizontalAlignment="Left" Margin="211,41,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
-                            <Label Content="Data badania" HorizontalAlignment="Left" Margin="0,81,0,0" VerticalAlignment="Top" Width="158" FontSize="20" FontFamily="Arial"/>
-                            <DatePicker x:Name="MesurementDatePicker" HorizontalAlignment="Left" Margin="211,83,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" Width="200"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Informacje wstępne" BorderBrush="White" Grid.Row="0" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Protokół nr " FontWeight="Bold" FontSize="20" Margin="5"/>
+                            <TextBox x:Name="ProtocolNumberTextBox" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
+                            <Label Content="Data dokumentu" FontSize="20" Grid.Column="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="20, 5, 5, 5"/>
+                            <DatePicker x:Name="DocumentDatePicker" Grid.Column="3" FontSize="20" Margin="5"/>
+                            <Label Content="Data badania" FontSize="20" Grid.Column="4" FontWeight="Bold" HorizontalAlignment="Right" Margin="20, 5, 5, 5"/>
+                            <DatePicker x:Name="MesurementDatePicker" FontSize="20" Grid.Column="5" Margin="5"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Zleceniodawca" HorizontalAlignment="Left" Height="156" Margin="10,171,0,0" VerticalAlignment="Top" Width="1510" BorderBrush="White">
-                        <Grid Margin="10,10,10,2.8">
-                            <Button x:Name="CustomerButton" Content="Wybierz" RenderTransformOrigin="0.5,0.5" Margin="934,10,456,81.2" Click="CustomerButton_Click" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30"/>
-                            <Label Content="Dane zleceniodawcy" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <TextBlock x:Name="CustomerInfoBlock" HorizontalAlignment="Left" Height="109" Margin="209,1,0,0" VerticalAlignment="Top" Width="720" FontSize="20" FontFamily="Arial" Background="White"/>
+                    <GroupBox Header="Zleceniodawca" BorderBrush="White" Grid.Row="1" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="CustomerButton" Content="Wybierz" Click="CustomerButton_Click" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" Margin="10" Padding="20, 5"/>
+                            <Label Content="Dane zleceniodawcy" FontSize="20" FontWeight="Bold" Margin="5"/>
+                            <TextBlock x:Name="CustomerInfoBlock" FontSize="20" Background="White" Grid.Row="1" Margin="5"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Obiekt" HorizontalAlignment="Left" Height="156" Margin="10,332,0,0" VerticalAlignment="Top" Width="1510" BorderBrush="White">
-                        <Grid Margin="10,10,10,2.8">
-                            <Button x:Name="ObjectButton" Content="Wybierz" RenderTransformOrigin="-24,0.2" Margin="934,10,456,79.2" Click="ObjectButton_Click" VerticalAlignment="Top" Height="30"/>
-                            <Label Content="Dane obiektu" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <TextBlock x:Name="ObjectInfoBlock" HorizontalAlignment="Left" Height="109" Margin="209,2,0,0" VerticalAlignment="Top" Width="720" FontSize="20" FontFamily="Arial" Background="White"/>
+                    <GroupBox Header="Obiekt" BorderBrush="White" Grid.Row="2" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="ObjectButton" Content="Wybierz" Click="ObjectButton_Click" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" Margin="10" Padding="20, 5"/>
+                            <Label Content="Dane obiektu" FontSize="20" FontWeight="Bold" Margin="5"/>
+                            <TextBlock x:Name="ObjectInfoBlock" FontSize="20" Background="White" Grid.Row="1" Margin="5"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Przyrządy pomiarowe" HorizontalAlignment="Left" Height="116" Margin="10,493,0,0" VerticalAlignment="Top" Width="1510" BorderBrush="White">
-                        <Grid Margin="10,10,10,2.8">
-                            <Label Content="Źródło światła" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
-                            <Button x:Name="SourceButton" Content="Wybierz" RenderTransformOrigin="-24,0.2" Margin="934,-2,456,54.2" Click="SourceButton_Click" VerticalAlignment="Top" Height="30"/>
-                            <Label Content="Miernik" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Arial" FontWeight="Bold" Margin="0,39,0,0"/>
-                            <Label x:Name="LightSourceLabel" HorizontalAlignment="Left" Height="30" Margin="209,-2,0,0" VerticalAlignment="Top" Width="720" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
-                            <Button x:Name="GaugeButton" Content="Wybierz" RenderTransformOrigin="-24,0.2" Margin="935,40,456,12.2" Click="GaugeButton_Click" VerticalAlignment="Top" Height="30"/>
-                            <Label x:Name="GaugeLabel" HorizontalAlignment="Left" Height="30" Margin="209,40,0,0" VerticalAlignment="Top" Width="720" FontFamily="Arial" FontSize="20" VerticalContentAlignment="Center" Background="White"/>
+                    <GroupBox Header="Przyrządy pomiarowe" BorderBrush="White" Grid.Row="3" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Źródło światła" FontSize="20" FontWeight="Bold" Margin="5, 20"/>
+                            <Label x:Name="LightSourceLabel" FontSize="20" Background="White" Grid.Column="1" Margin="10, 20"/>
+                            <Button x:Name="SourceButton" Content="Wybierz" Click="SourceButton_Click" Grid.Column="2" HorizontalAlignment="Left" Margin="10, 20" Padding="20, 5"/>
+
+                            <Label Content="Miernik" FontSize="20" FontWeight="Bold" Grid.Row="2" Margin="5, 20"/>
+                            <Label x:Name="GaugeLabel" FontSize="20" Background="White" Grid.Row="2" Grid.Column="1" Margin="10, 20"/>
+                            <Button x:Name="GaugeButton" Content="Wybierz" Click="GaugeButton_Click" Grid.Row="2" Grid.Column="2" Margin="10, 20" Padding="20, 5" HorizontalAlignment="Left"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Tabela Pomiarów">
                 <Grid Background="#FFE5E5E5" DataContext="{StaticResource mesurementViewSource}">
-                    <DataGrid x:Name="MesurementsDataGrid" Margin="1,1,1,78" SelectionChanged="MesurementsDataGrid_SelectionChanged" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" FontFamily="Arial" CanUserAddRows="False" IsReadOnly="True" RowHeaderWidth="0" CanUserResizeRows="False" MinColumnWidth="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="MesurementsDataGrid" SelectionChanged="MesurementsDataGrid_SelectionChanged" ItemsSource="{Binding}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16" CanUserAddRows="False" IsReadOnly="True" RowHeaderWidth="0" CanUserResizeRows="False">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="FontWeight" Value="Bold" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Number}" ClipboardContentBinding="{x:Null}" Header="L.p." IsReadOnly="True" Width="0.015*" CanUserSort="False"/>
-                            <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" Width="0.1*"/>
-                            <DataGridTextColumn Binding="{Binding Destination}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Cel" Width="0.1*"/>
-                            <DataGridTextColumn Binding="{Binding Type.Name}" ClipboardContentBinding="{x:Null}" Header="Typ światłowodu" IsReadOnly="True" CanUserSort="False" Width="0.06*"/>
-                            <DataGridTextColumn Binding="{Binding NumberOfWire}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Numer włókna"/>
-                            <DataGridTextColumn Binding="{Binding Distance}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Długość [km]"/>
-                            <DataGridTextColumn Binding="{Binding MaxAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wyliczona maksymalna wartość tłumienności [dB]" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding RealAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zmierzona tłumienność [dB]"/>
-                            <DataGridTextColumn Binding="{Binding PropperValue, Converter={StaticResource BoolConv}}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Ocena pomiaru"/>
+                            <DataGridTextColumn Binding="{Binding Number}" ClipboardContentBinding="{x:Null}" Header="L.p." IsReadOnly="True" Width="2*" CanUserSort="False"/>
+                            <DataGridTextColumn Binding="{Binding Source}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Źródło" Width="10*"/>
+                            <DataGridTextColumn Binding="{Binding Destination}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Cel" Width="10*"/>
+                            <DataGridTextColumn Binding="{Binding Type.Name}" ClipboardContentBinding="{x:Null}" Header="Typ światłowodu" IsReadOnly="True" CanUserSort="False" Width="8*"/>
+                            <DataGridTextColumn Binding="{Binding NumberOfWire}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Numer włókna" Width="7*"/>
+                            <DataGridTextColumn Binding="{Binding Distance}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Długość [km]" Width="6*"/>
+                            <DataGridTextColumn Binding="{Binding MaxAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Wyliczona maksymalna wartość tłumienności [dB]" IsReadOnly="True" Width="22*"/>
+                            <DataGridTextColumn Binding="{Binding RealAttenuation}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Zmierzona tłumienność [dB]" Width="13*"/>
+                            <DataGridTextColumn Binding="{Binding PropperValue, Converter={StaticResource BoolConv}}" CanUserSort="False" ClipboardContentBinding="{x:Null}" Header="Ocena pomiaru" Width="7*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="AddButt" Content="Dodaj pomiar" HorizontalAlignment="Right" Margin="0,0,19,18" VerticalAlignment="Bottom" Height="40" Width="100" Click="AddButt_Click" IsDefault="True"/>
-                    <Button x:Name="DelButt" Content="Usuń" HorizontalAlignment="Right" Margin="0,0,299,18" VerticalAlignment="Bottom" Height="40" Width="100" Click="DelButt_Click" IsEnabled="False"/>
-                    <Button x:Name="EditButt" Content="Edytuj" HorizontalAlignment="Right" Margin="0,0,439,18" VerticalAlignment="Bottom" Height="40" Width="100" Click="EditButt_Click" IsEnabled="False"/>
-                    <Button x:Name="AddLabelButt" Content="Dodaj rozdział" HorizontalAlignment="Right" Margin="0,0,159,18" VerticalAlignment="Bottom" Height="40" Width="100" Click="AddLabelButt_Click" IsDefault="True"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                        <Button x:Name="AddButt" Content="Dodaj pomiar"  Click="AddButt_Click" IsDefault="True" Padding="20, 5" Margin="10, 20"/>
+                        <Button x:Name="AddLabelButt" Content="Dodaj rozdział" Click="AddLabelButt_Click" IsDefault="True" Padding="20, 5" Margin="10, 20"/>
+                        <Button x:Name="EditButt" Content="Edytuj" Click="EditButt_Click" IsEnabled="False" Padding="20, 5" Margin="10, 20"/>
+                        <Button x:Name="DelButt" Content="Usuń" Click="DelButt_Click" IsEnabled="False" Padding="20, 5" Margin="10, 20"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Stopka" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="54" FontFamily="Arial">
+            <TabItem Header="Stopka">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox Header="Uwagi i wnioski" HorizontalAlignment="Left" Height="156" Margin="10,10,0,0" VerticalAlignment="Top" Width="1510" BorderThickness="1" BorderBrush="White">
-                        <Grid HorizontalAlignment="Left" Height="140" Margin="2,0,-4,-5" VerticalAlignment="Top" Width="1500">
-                            <TextBox Name="ConclusionsTextBox" HorizontalAlignment="Left" Height="124" Margin="2,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1490" FontSize="20" AcceptsReturn="True" TextChanged="SthChangedInProject"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Uwagi i wnioski" BorderBrush="White" Margin="5">
+                        <Grid>
+                            <TextBox Name="ConclusionsTextBox" TextWrapping="Wrap" Text="" FontSize="20" AcceptsReturn="True" TextChanged="SthChangedInProject" Margin="10"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Wykonawca pomiarów" HorizontalAlignment="Left" Height="175" Margin="10,350,0,0" VerticalAlignment="Top" Width="1510" BorderThickness="1" BorderBrush="White">
-                        <Grid HorizontalAlignment="Left" Height="155" Margin="2,0,-4,-1" VerticalAlignment="Top" Width="1500">
-                            <TextBlock Name="DoingPersonTextBlock" HorizontalAlignment="Left" Margin="19,39,0,0" TextWrapping="Wrap" FontSize="20" Text="" VerticalAlignment="Top" Height="100" Width="400" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
-                            <TextBlock Name="VeryfingPersonTextBlock" HorizontalAlignment="Left" Margin="859,39,0,0" TextWrapping="Wrap" FontSize="20" Text="" VerticalAlignment="Top" Height="100" Width="400" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
-                            <Label Content="Wykonał" HorizontalAlignment="Left" Margin="12,4,0,0" FontSize="20" VerticalAlignment="Top" FontWeight="Bold" Height="35"/>
-                            <Label Content="Sprawdził" HorizontalAlignment="Left" Margin="854,4,0,0" FontSize="20" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <Button Name="DoingPersonButt" Content="Wybierz" HorizontalAlignment="Left" Margin="439,39,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="DoingPersonButt_Click"/>
-                            <Button Name="VeryfingPersonButt" Content="Wybierz" HorizontalAlignment="Left" Margin="1279,39,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="VeryfingPersonButt_Click"/>
+                    <GroupBox Header="Wykonawca pomiarów" BorderBrush="White" Grid.Row="1" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Wykonał" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Name="DoingPersonTextBlock" TextWrapping="Wrap" FontSize="20" Text="" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Grid.Column="1" Margin="10"/>
+                            <Button Name="DoingPersonButt" Content="Wybierz" Click="DoingPersonButt_Click" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20, 5" Margin="10"/>
+                            
+                            <Label Content="Sprawdził" FontSize="20" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center"/>
+                            <TextBlock Name="VeryfingPersonTextBlock" FontSize="20" Text="" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Grid.Column="4" Margin="10"/>
+                            <Button Name="VeryfingPersonButt" Content="Wybierz" Click="VeryfingPersonButt_Click" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="left" Padding="20, 5" Margin="10"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Orzeczenie" HorizontalAlignment="Left" Height="156" Margin="10,179,0,0" VerticalAlignment="Top" Width="1510" BorderThickness="1" BorderBrush="White">
-                        <Grid HorizontalAlignment="Left" Height="140" Margin="2,0,-4,0" VerticalAlignment="Top" Width="1500">
-                            <TextBlock Name="OpinionTextBlock" HorizontalAlignment="Left" Margin="4,5,0,0" TextWrapping="Wrap" FontSize="20" Text="" VerticalAlignment="Top" Height="125" Width="1255" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
-                            <Button Name="OpinionButton"  Content="Wybierz" HorizontalAlignment="Left" Margin="1279,5,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="OpinionButton_Click"/>
+                    <GroupBox Header="Orzeczenie" BorderBrush="White" Grid.Row="2" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="OpinionTextBlock" FontSize="20" Text="" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Margin="10"/>
+                            <Button Name="OpinionButton"  Content="Wybierz" Click="OpinionButton_Click" Grid.Column="1" Padding="20, 5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
